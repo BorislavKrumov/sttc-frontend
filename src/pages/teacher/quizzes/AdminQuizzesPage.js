@@ -21,7 +21,7 @@ const AdminQuizzesPage = () => {
   const [quizzes, setQuizzes] = useState(quizzesReducer.quizzes);
 
   const addNewQuizHandler = () => {
-    navigate("/adminAddQuiz");
+    navigate("teacherAddQuiz");
   };
   const deleteQuizHandler = (quiz) => {
     swal({
@@ -49,11 +49,11 @@ const AdminQuizzesPage = () => {
     });
   };
   const updateQuizHandler = (quizTitle, quizId) => {
-    navigate(`/adminUpdateQuiz/${quizId}`);
+    navigate(`/teacherUpdateQuiz/${quizId}`);
   };
 
   const questionsHandler = (quizTitle, quizId) => {
-    navigate(`/adminQuestions/?quizId=${quizId}&quizTitle=${quizTitle}`);
+    navigate(`teacherQuestions/?quizId=${quizId}&quizTitle=${quizTitle}`);
   };
 
   useEffect(() => {

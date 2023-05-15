@@ -21,7 +21,7 @@ const AdminQuestionsPage = () => {
   let answers = {};
 
   const addNewQuestionHandler = () => {
-    navigate(`/adminAddQuestion/?quizId=${quizId}`);
+    navigate(`/teacherAddQuestion/?quizId=${quizId}`);
   };
 
   useEffect(() => {

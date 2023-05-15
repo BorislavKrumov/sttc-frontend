@@ -1,18 +1,19 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./App.css";
 import Header from "./components/Header";
-import AdminAddCategoryPage from "./pages/admin/categories/AdminAddCategoryPage";
-import AdminCategoriesPage from "./pages/admin/categories/AdminCategoriesPage";
-import AdminUpdateCategoryPage from "./pages/admin/categories/AdminUpdateCategoryPage";
+import AddCourse from "./pages/teacher/courses/AddCourse";
+import TeacherCourse from "./pages/teacher/courses/TeacherCourse";
+import AdminUpdateCategoryPage from "./pages/teacher/courses/UpdateCourse";
 import AdminProfilePage from "./pages/admin/AdminProfilePage";
+import TeacherProfilePage from "./pages/teacher/TeacherProfilePage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import AdminQuizzesPage from "./pages/admin/quizzes/AdminQuizzesPage";
 import AdminAddQuiz from "./pages/admin/quizzes/AdminAddQuiz";
 import AdminUpdateQuiz from "./pages/admin/quizzes/AdminUpdateQuiz";
-import AdminQuestionsPage from "./pages/admin/questions/AdminQuestionsPage";
-import AdminAddQuestionsPage from "./pages/admin/questions/AdminAddQuestionsPage";
-import AdminUpdateQuestionPage from "./pages/admin/questions/AdminUpdateQuestionPage";
+import AdminQuestionsPage from "./pages/teacher/questions/AdminQuestionsPage";
+import AdminAddQuestionsPage from "./pages/teacher/questions/AdminAddQuestionsPage";
+import AdminUpdateQuestionPage from "./pages/teacher/questions/AdminUpdateQuestionPage";
 import UserProfilePage from "./pages/users/UserProfilePage";
 import UserQuizzesPage from "./pages/users/UserQuizzesPage";
 import UserQuizManualPage from "./pages/users/UserQuizManualPage";
@@ -28,17 +29,18 @@ const App = () => {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/adminProfile" element={<AdminProfilePage />} />
-        <Route path="/adminCategories" element={<AdminCategoriesPage />} />
-        <Route path="/adminAddCategory" element={<AdminAddCategoryPage />} />
+        <Route path="/teacherProfile" element={<TeacherProfilePage />} />
+        <Route path="/teacherCourse" element={<TeacherCourse />} />
+        <Route path="/teacherAddCourse" element={<AddCourse />} />
         <Route
           path="/adminUpdateCategory/:catId"
           element={<AdminUpdateCategoryPage />}
         />
-        <Route path="/adminQuizzes" element={<AdminQuizzesPage />} />
-        <Route path="/adminAddQuiz" element={<AdminAddQuiz />} />
-        <Route path="/adminUpdateQuiz/:quizId" element={<AdminUpdateQuiz />} />
-        <Route path="/adminQuestions" element={<AdminQuestionsPage />} />
-        <Route path="/adminAddQuestion" element={<AdminAddQuestionsPage />} />
+        <Route path="/teacherQuizzes" element={<AdminQuizzesPage />} />
+        <Route path="/teacherAddQuiz" element={<AdminAddQuiz />} />
+        <Route path="/teacherUpdateQuiz/:quizId" element={<AdminUpdateQuiz />} />
+        <Route path="/teacherQuestions" element={<AdminQuestionsPage />} />
+        <Route path="/teacherAddQuestion" element={<AdminAddQuestionsPage />} />
         <Route
           path="/adminUpdateQuestion/:quesId"
           element={<AdminUpdateQuestionPage />}

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./AdminCategoriesPage.css";
+import "./TeacherCourse.css";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Button, ListGroup } from "react-bootstrap";
@@ -13,7 +13,7 @@ import {
 } from "../../../actions/categoriesActions";
 import swal from "sweetalert";
 
-const AdminCategoriesPage = () => {
+const TeacherCourse = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const token = JSON.parse(localStorage.getItem("jwtToken"));
@@ -22,11 +22,11 @@ const AdminCategoriesPage = () => {
   const [categories, setCategories] = useState(categoriesReducer.categories);
 
   const categoryClickHandler = (catId) => {
-    navigate(`/adminQuizzes/?catId=${catId}`);
+    navigate(`/teacherQuizzes/?catId=${catId}`);
   };
 
   const addNewCategoryHandler = () => {
-    navigate("/adminAddCategory");
+    navigate("/teacherAddCourse");
   };
 
   const updateCategoryHandler = (event, category) => {
@@ -155,4 +155,4 @@ const AdminCategoriesPage = () => {
   );
 };
 
-export default AdminCategoriesPage;
+export default TeacherCourse;

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./AdminUpdateCategoryPage.css";
+import "./UpdateCourse.css";
 import { Button, Form } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import swal from "sweetalert";
@@ -10,7 +10,7 @@ import Sidebar from "../../../components/Sidebar";
 import { updateCategory } from "../../../actions/categoriesActions";
 import { useNavigate } from "react-router-dom";
 
-const AdminUpdateCategoryPage = () => {
+const UpdateCourse = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const params = useParams();
@@ -35,7 +35,7 @@ const AdminUpdateCategoryPage = () => {
         swal("Курсът НЕ е обновен!", `${title} НЕ е обновен`, "error");
       }
     });
-    navigate("/adminCategories");
+    navigate("/teacherCourse");
   };
 
   return (
@@ -88,4 +88,4 @@ const AdminUpdateCategoryPage = () => {
   );
 };
 
-export default AdminUpdateCategoryPage;
+export default UpdateCourse;

@@ -39,6 +39,8 @@ const LoginPage = () => {
         data.payload.roles.map((r) => {
           if (r["roleName"] === "ADMIN") {
             return navigate("/adminProfile");
+          } else if (r["roleName"] === "TEACHER") {
+            return navigate("/teacherProfile");
           } else {
             return navigate("/profile");
           }

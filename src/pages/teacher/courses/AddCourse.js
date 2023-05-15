@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./AdminAddCategoryPage.css";
+import "./AddCourse.css";
 import { Button, Form } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import * as categoriesConstants from "../../../constants/categoriesConstants";
@@ -12,7 +12,7 @@ import {
 import swal from "sweetalert";
 import { useNavigate } from "react-router-dom";
 
-const AdminAddCategoryPage = () => {
+const AddCourse = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [errors, setErrors] = useState({});
@@ -37,7 +37,7 @@ const AdminAddCategoryPage = () => {
       } else {
         swal("Курсът НЕ е добавен!", `${title} НЕ е добавено успешно`, "error");
       }
-      // navigate("/adminCategories");
+      
     });
   };
   const validateForm = (form) => {
@@ -112,4 +112,4 @@ const AdminAddCategoryPage = () => {
   );
 };
 
-export default AdminAddCategoryPage;
+export default AddCourse;

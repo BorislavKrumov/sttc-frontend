@@ -22,6 +22,8 @@ const Header = () => {
       loginReducer.user.roles.map((r) => {
         if (r["roleName"] === "ADMIN") {
           profilePageUrl = "/adminProfile";
+        }  else if (r["roleName"] === "TEACHER") {
+          profilePageUrl = "/teacherProfile";
         } else {
           profilePageUrl = "/";
         }
