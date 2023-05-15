@@ -1,23 +1,25 @@
-.adminQuestionsPage__container {
+.addQuiz__container {
     display: flex;
 }
 
-.adminQuestionsPage__sidebar {
+.addQuiz__sidebar {
     position: sticky;
     top: 0;
+    flex: 0.01;
     height: 100vh;
+
 }
 
-.adminQuestionsPage__content {
-    width: 70%;
-    height: fit-content;
+.addQuiz__content {
+    margin: 5px;
     padding: 8px;
+    flex: 0.99;
 }
 
-.adminQuestionsPage__content--button {
+.addQuiz__content--button{
     display: block;
     width: 20%;
     margin: 20px auto;
     background-color: rgb(68 177 49);
-    color: white;
+    color:white;
 }

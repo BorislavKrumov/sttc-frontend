@@ -1,20 +1,20 @@
-.adminQuizzesPage__container {
+.quizzesPage__container {
     display: flex;
 }
 
-.adminQuizzesPage__sidebar {
+.quizzesPage__sidebar {
     position: sticky;
     top: 0;
     height: 100vh;
 }
 
-.adminQuizzesPage__content {
+.quizzesPage__content {
     width: 70%;
     height: fit-content;
     padding: 8px;
 }
 
-.adminQuizzesPage__content--quizzesList {
+.quizzesPage__content--quizzesList {
     width: 100% !important;
     margin-top: 5px;
     border-bottom-style: inset;
@@ -23,13 +23,13 @@
     justify-content: center;
 }
 
-.adminQuizzesPage__content--ButtonsList {
+.quizzesPage__content--ButtonsList {
     display: flex;
     flex-wrap: wrap;
     margin: 5px;
 }
 
-.adminQuizzesPage__content--button {
+.quizzesPage__content--button {
     display: block;
     width: 20%;
     margin: 20px auto;

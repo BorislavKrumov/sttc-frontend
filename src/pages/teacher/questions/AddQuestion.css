@@ -1,8 +1,8 @@
-.adminAddQuestionPage__container {
+.addQuestion__container {
     display: flex;
 }
 
-.adminAddQuestionPage__sidebar {
+.addQuestion__sidebar {
     position: sticky;
     top: 0;
     flex: 0.01;
@@ -10,13 +10,13 @@
 
 }
 
-.adminAddQuestionPage__content {
+.addQuestion__content {
     margin: 5px;
     padding: 8px;
     flex: 0.99;
 }
 
-.adminAddQuestionPage__content--button{
+.addQuestion__content--button{
     display: block;
     width: 20%;
     margin: 20px auto;

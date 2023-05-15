@@ -1,49 +1,27 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import swal from "sweetalert";
+import { addQuestion } from "../../../actions/questionsActions";
 import FormContainer from "../../../components/FormContainer";
 import Sidebar from "../../../components/Sidebar";
 import * as questionsConstants from "../../../constants/questionsConstants";
-import { useNavigate, useParams } from "react-router-dom";
+import "./AddQuestion.css";
+import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import "./AdminUpdateQuestionPage.css";
-import {
-  fetchQuestionsByQuiz,
-  updateQuestion,
-} from "../../../actions/questionsActions";
 
-const AdminUpdateQuestionPage = () => {
+const AddQuestion = () => {
+  const [content, setContent] = useState("");
+  const [image, setImage] = useState("");
+  const [option1, setOption1] = useState("");
+  const [option2, setOption2] = useState("");
+  const [option3, setOption3] = useState("");
+  const [option4, setOption4] = useState("");
+  const [answer, setAnswer] = useState(null);
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const params = useParams();
-
-  const quesId = params.quesId;
   const urlParams = new URLSearchParams(window.location.search);
   const quizId = urlParams.get("quizId");
-
-  const questionsReducer = useSelector((state) => state.questionsReducer);
-  const [oldQuestion, setOldQuestion] = useState(
-    questionsReducer.questions.filter((ques) => ques.quesId == quesId)[0]
-  );
-
-  const [content, setContent] = useState(
-    oldQuestion ? oldQuestion.content : ""
-  );
-  const [image, setImage] = useState(oldQuestion ? oldQuestion.image : "");
-  const [option1, setOption1] = useState(
-    oldQuestion ? oldQuestion.option1 : ""
-  );
-  const [option2, setOption2] = useState(
-    oldQuestion ? oldQuestion.option2 : ""
-  );
-  const [option3, setOption3] = useState(
-    oldQuestion ? oldQuestion.option3 : ""
-  );
-  const [option4, setOption4] = useState(
-    oldQuestion ? oldQuestion.option4 : ""
-  );
-  const [answer, setAnswer] = useState(oldQuestion ? oldQuestion.answer : null);
-
   const token = JSON.parse(localStorage.getItem("jwtToken"));
 
   const onSelectAnswerHandler = (e) => {
@@ -54,7 +32,6 @@ const AdminUpdateQuestionPage = () => {
     e.preventDefault();
     if (answer !== null && answer !== "n/a") {
       const question = {
-        quesId: quesId,
         content: content,
         image: image,
         option1: option1,
@@ -67,30 +44,26 @@ const AdminUpdateQuestionPage = () => {
         },
       };
 
-      updateQuestion(dispatch, question, token).then((data) => {
-        if (data.type === questionsConstants.UPDATE_QUESTION_SUCCESS) {
-          swal(
-            "Въпросът е обновен!",
-            `${content} е правилно обновен`,
-            "success"
-          );
-        } else {
-          swal("Въпросът НЕ е обновен!", `${content} НЕ е обновен`, "error");
+      addQuestion(dispatch, question, token).then((data) => {
+        if (data.type === questionsConstants.ADD_QUESTION_SUCCESS)
+          swal("Въпросът е добавен!", `${content} е добавен`, "success");
+        else {
+          swal("Въпросът НЕ е добавен!", `${content} НЕ е добавен`, "error");
         }
       });
     } else {
-      alert("Изберете валиден отговор!");
+      alert("Избери валиден отговор!");
     }
   };
 
   return (
-    <div className="adminAddQuestionPage__container">
-      <div className="adminAddQuestionPage__sidebar">
+    <div className="addQuestion__container">
+      <div className="addQuestion__sidebar">
         <Sidebar />
       </div>
-      <div className="adminAddQuestionPage__content">
+      <div className="addQuestion__content">
         <FormContainer>
-          <h2>Обнови въпрос</h2>
+          <h2>Добави въпрос</h2>
           <Form onSubmit={submitHandler}>
             <Form.Group className="my-3" controlId="content">
               <Form.Label>Въпрос</Form.Label>
@@ -170,7 +143,7 @@ const AdminUpdateQuestionPage = () => {
             <div className="my-3">
               <label htmlFor="answer-select">Изберете правилната отговор:</label>
               <Form.Select
-                aria-label="Choose Correct Option"
+                aria-label="Изберете Правилен Отговор"
                 id="answer-select"
                 onChange={onSelectAnswerHandler}
               >
@@ -194,7 +167,7 @@ const AdminUpdateQuestionPage = () => {
               </Form.Select>
             </div>
             <Button
-              className="my-5 adminAddQuestionPage__content--button"
+              className="my-5 addQuestion__content--button"
               type="submit"
               variant="primary"
             >
@@ -207,4 +180,4 @@ const AdminUpdateQuestionPage = () => {
   );
 };
 
-export default AdminUpdateQuestionPage;
+export default AddQuestion;

@@ -1,21 +1,21 @@
-.adminAddCategoryPage__container {
+.coursesPage__container {
     display: flex;
 }
 
-.adminAddCategoryPage__sidebar {
+.coursesPage__sidebar {
     position: sticky;
     top: 0;
     flex: 0.01;
 
 }
 
-.adminAddCategoryPage__content {
+.coursesPage__content {
     margin: 5px;
     padding: 8px;
     flex: 0.99;
 }
 
-.adminAddCategoryPage__content--button{
+.coursesPage__content--button{
     display: block;
     width: 20%;
     margin: 20px auto;

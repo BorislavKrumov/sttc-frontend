@@ -1,37 +1,29 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Button, Form } from "react-bootstrap";
-import "./AdminUpdateQuiz.css";
-import swal from "sweetalert";
+import "./AddQuiz.css";
 import { useDispatch, useSelector } from "react-redux";
+import swal from "sweetalert";
 import Sidebar from "../../../components/Sidebar";
 import FormContainer from "../../../components/FormContainer";
 import * as quizzesConstants from "../../../constants/quizzesConstants";
+import { addQuiz } from "../../../actions/quizzesActions";
 import { fetchCategories } from "../../../actions/categoriesActions";
-import "./AdminUpdateQuiz.css";
-import { fetchQuizzes, updateQuiz } from "../../../actions/quizzesActions";
 
-const AdminUpdateQuiz = () => {
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const params = useParams();
-  const quizId = params.quizId;
-
-  const oldQuiz = useSelector((state) =>
-    state.quizzesReducer.quizzes.filter((quiz) => quiz.quizId == quizId)
-  )[0];
-
-  const [title, setTitle] = useState(oldQuiz.title);
-  const [description, setDescription] = useState(oldQuiz.description);
-  const [maxMarks, setMaxMarks] = useState(oldQuiz.maxMarks);
-  const [numberOfQuestions, setNumberOfQuestions] = useState(
-    oldQuiz.numberOfQuestions
-  );
-  const [isActive, setIsActive] = useState(oldQuiz.isActive);
+const AddQuiz = () => {
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [maxMarks, setMaxMarks] = useState(0);
+  const [numberOfQuestions, setNumberOfQuestions] = useState(0);
+  const [isActive, setIsActive] = useState(false);
   const [selectedCategoryId, setSelectedCategoryId] = useState(null);
+  const [errors, setErrors] = useState({});
 
   const categoriesReducer = useSelector((state) => state.categoriesReducer);
-  const [categories, setCategories] = useState(categoriesReducer.categories);
+  const [course, setCategories] = useState(categoriesReducer.categories);
+
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const onClickPublishedHandler = () => {
     setIsActive(!isActive);
@@ -44,10 +36,15 @@ const AdminUpdateQuiz = () => {
   const token = JSON.parse(localStorage.getItem("jwtToken"));
 
   const submitHandler = (e) => {
+    const form = e.currentTarget;
     e.preventDefault();
+    const newErrors = validateForm(form);
+    setErrors(newErrors);
+    if (Object.values(newErrors).length > 0) {
+      return;
+    }
     if (selectedCategoryId !== null && selectedCategoryId !== "n/a") {
       const quiz = {
-        quizId:quizId,
         title: title,
         description: description,
         maxMarks: maxMarks,
@@ -55,25 +52,23 @@ const AdminUpdateQuiz = () => {
         isActive: isActive,
         category: {
           catId: selectedCategoryId,
-          title: categories.filter((cat) => cat.catId == selectedCategoryId)[0][
+          title: course.filter((cat) => cat.catId == selectedCategoryId)[0][
             "title"
           ],
-          description: categories.filter(
+          description: course.filter(
             (cat) => cat.catId == selectedCategoryId
           )[0]["description"],
         },
       };
-      updateQuiz(dispatch, quiz, token).then((data) => {
-        if (data.type === quizzesConstants.UPDATE_QUIZ_SUCCESS){
-          swal("Тестът се обнови!", `${quiz.title} е обновен`, "success");
-          fetchQuizzes(dispatch, token);
-        }
+      addQuiz(dispatch, quiz, token).then((data) => {
+        if (data.type === quizzesConstants.ADD_QUIZ_SUCCESS)
+          swal("Quiz Added!", `${quiz.title} succesfully added`, "success");
         else {
-          swal("Тестът НЕ се обнови!", `${quiz.title} НЕ е обновен`, "error");
+          swal("Quiz Not Added!", `${quiz.title} not added`, "error");
         }
       });
     } else {
-      alert("Изберете валидна категория!");
+      alert("Select valid category!");
     }
   };
 
@@ -82,21 +77,38 @@ const AdminUpdateQuiz = () => {
   }, []);
 
   useEffect(() => {
-    if (categories.length === 0) {
+    if (course.length === 0) {
       fetchCategories(dispatch, token).then((data) => {
         setCategories(data.payload);
       });
     }
-  }, [categories]);
+  }, []);
+  const validateForm = (form) => {
+    const newErrors = {}
+    const { title, description, maxMarks, numberOfQuestions } = form
 
+    if (!title.value || title.value.length < 3) {
+      newErrors.title = "Невалидно заглавие";
+    }
+    if (!description.value || description.value.length < 3) {
+      newErrors.description = "Невалидно описание";
+    }
+    if (!maxMarks.value || maxMarks.value < 1) {
+      newErrors.maxMarks = "Невалидни точки";
+    }
+    if (!numberOfQuestions.value || numberOfQuestions.value < 1) {
+      newErrors.numberOfQuestions = "Невалиден брой въпроси";
+    }
+    return newErrors;
+  }
   return (
-    <div className="adminUpdateQuizPage__container">
-      <div className="adminUpdateQuizPage__sidebar">
+    <div className="addQuiz__container">
+      <div className="addQuiz__sidebar">
         <Sidebar />
       </div>
-      <div className="adminUpdateQuizPage__content">
+      <div className="addQuiz__content">
         <FormContainer>
-          <h2>Обнови теста</h2>
+          <h2>Добави тест</h2>
           <Form onSubmit={submitHandler}>
             <Form.Group className="my-3" controlId="title">
               <Form.Label>Заглавие</Form.Label>
@@ -107,7 +119,11 @@ const AdminUpdateQuiz = () => {
                 onChange={(e) => {
                   setTitle(e.target.value);
                 }}
+                isInvalid={errors.title}
               ></Form.Control>
+              <Form.Control.Feedback type="invalid">
+              {errors.title}
+            </Form.Control.Feedback>
             </Form.Group>
 
             <Form.Group className="my-3" controlId="description">
@@ -122,7 +138,11 @@ const AdminUpdateQuiz = () => {
                 onChange={(e) => {
                   setDescription(e.target.value);
                 }}
+                isInvalid={errors.description}
               ></Form.Control>
+              <Form.Control.Feedback type="invalid">
+              {errors.description}
+            </Form.Control.Feedback>
             </Form.Group>
 
             <Form.Group className="my-3" controlId="maxMarks">
@@ -134,7 +154,11 @@ const AdminUpdateQuiz = () => {
                 onChange={(e) => {
                   setMaxMarks(e.target.value);
                 }}
+                isInvalid={errors.maxMarks}
               ></Form.Control>
+              <Form.Control.Feedback type="invalid">
+              {errors.maxMarks}
+            </Form.Control.Feedback>
             </Form.Group>
 
             <Form.Group className="my-3" controlId="numberOfQuestions">
@@ -146,11 +170,14 @@ const AdminUpdateQuiz = () => {
                 onChange={(e) => {
                   setNumberOfQuestions(e.target.value);
                 }}
+                isInvalid={errors.numberOfQuestions}
               ></Form.Control>
+              <Form.Control.Feedback type="invalid">
+              {errors.numberOfQuestions}
+            </Form.Control.Feedback>
             </Form.Group>
 
             <Form.Check
-            style={{borderColor:"rgb(68 177 49)"}}
               className="my-3"
               type="switch"
               id="publish-switch"
@@ -167,8 +194,8 @@ const AdminUpdateQuiz = () => {
                 onChange={onSelectCategoryHandler}
               >
                 <option value="n/a">Избери курс</option>
-                {categories ? (
-                  categories.map((cat, index) => (
+                {course ? (
+                  course.map((cat, index) => (
                     <option key={index} value={cat.catId}>
                       {cat.title}
                     </option>
@@ -182,7 +209,7 @@ const AdminUpdateQuiz = () => {
               </Form.Select>
             </div>
             <Button
-              className="my-5 adminUpdateQuizPage__content--button"
+              className="my-5 addQuiz__content--button"
               type="submit"
               variant="primary"
             >
@@ -195,4 +222,4 @@ const AdminUpdateQuiz = () => {
   );
 };
 
-export default AdminUpdateQuiz;
+export default AddQuiz;

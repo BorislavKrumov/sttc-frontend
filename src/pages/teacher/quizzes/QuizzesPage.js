@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./AdminQuizzesPage.css";
+import "./QuizzesPage.css";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Button, ListGroup } from "react-bootstrap";
@@ -10,7 +10,7 @@ import { deleteQuiz, fetchQuizzes } from "../../../actions/quizzesActions";
 import * as quizzesConstants from "../../../constants/quizzesConstants";
 import swal from "sweetalert";
 
-const AdminQuizzesPage = () => {
+const QuizzesPage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const urlParams = new URLSearchParams(window.location.search);
@@ -69,11 +69,11 @@ const AdminQuizzesPage = () => {
   }, []);
 
   return (
-    <div className="adminQuizzesPage__container">
-      <div className="adminQuizzesPage__sidebar">
+    <div className="quizzesPage__container">
+      <div className="quizzesPage__sidebar">
         <Sidebar />
       </div>
-      <div className="adminQuizzesPage__content">
+      <div className="quizzesPage__content">
         <h2>Тестове</h2>
         {quizzes ? (
           quizzes.length === 0 ? (
@@ -83,7 +83,7 @@ const AdminQuizzesPage = () => {
               if ((catId && quiz.category.catId == catId) || (catId == null))
                 return (
                   <ListGroup
-                    className="adminQuizzesPage__content--quizzesList"
+                    className="quizzesPage__content--quizzesList"
                     key={index}
                   >
                     <ListGroup.Item className="align-items-start" action>
@@ -91,7 +91,7 @@ const AdminQuizzesPage = () => {
                         <div className="fw-bold">{quiz.title}</div>
                         <p style={{ color: "grey" }}>{quiz.category.title}</p>
                         {<p className="my-3">{quiz.description}</p>}
-                        <div className="adminQuizzesPage__content--ButtonsList">
+                        <div className="quizzesPage__content--ButtonsList">
                           <div
                             onClick={() =>
                               questionsHandler(quiz.title, quiz.quizId)
@@ -173,7 +173,7 @@ const AdminQuizzesPage = () => {
         )}
         <Button
           variant=""
-          className="adminQuizzesPage__content--button"
+          className="quizzesPage__content--button"
           onClick={addNewQuizHandler}
         >
           Добави тест
@@ -183,4 +183,4 @@ const AdminQuizzesPage = () => {
   );
 };
 
-export default AdminQuizzesPage;
+export default QuizzesPage;

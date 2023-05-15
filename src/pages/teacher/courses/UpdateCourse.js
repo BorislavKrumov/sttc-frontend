@@ -39,11 +39,11 @@ const UpdateCourse = () => {
   };
 
   return (
-    <div className="adminUpdateCategoryPage__container">
-      <div className="adminUpdateCategoryPage__sidebar">
+    <div className="updateCoursePage__container">
+      <div className="updateCoursePage__sidebar">
         <Sidebar />
       </div>
-      <div className="adminUpdateCategoryPage__content">
+      <div className="updateCoursePage__content">
         <FormContainer>
           <h2>Обнови курсът</h2>
           <Form onSubmit={submitHandler}>
@@ -75,7 +75,7 @@ const UpdateCourse = () => {
             </Form.Group>
 
             <Button
-              className="my-3 adminUpdateCategoryPage__content--button"
+              className="my-3 updateCoursePage__content--button"
               type="submit"
               variant=""
             >

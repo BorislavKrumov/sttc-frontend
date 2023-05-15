@@ -1,21 +1,21 @@
-.adminCategoriesPage__container {
+.coursesPage__container {
     display: flex;
 }
 
-.adminCategoriesPage__sidebar {
+.coursesPage__sidebar {
     position: sticky;
     top: 0;
     height: 100vh;
 }
 
-.adminCategoriesPage__content {
+.coursesPage__content {
     width: 70%;
     height: fit-content;
     margin: 5px;
     padding: 8px;
 }
 
-.adminCategoriesPage__content--categoriesList {
+.coursesPage__content--categoriesList {
     margin-top: 10px;
     border-bottom-style: inset;
     border-right-style: inset;
@@ -23,7 +23,7 @@
     justify-content: center;
 }
 
-.adminCategoriesPage__content--button {
+.coursesPage__content--button {
     display: block;
     width: 20%;
     margin: 20px auto;

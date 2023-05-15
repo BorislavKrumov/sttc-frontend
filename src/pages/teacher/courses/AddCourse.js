@@ -55,11 +55,11 @@ const AddCourse = () => {
   }
 
   return (
-    <div className="adminAddCategoryPage__container">
-      <div className="adminAddCategoryPage__sidebar">
+    <div className="coursesPage__container">
+      <div className="coursesPage__sidebar">
         <Sidebar />
       </div>
-      <div className="adminAddCategoryPage__content">
+      <div className="coursesPage__content">
         <FormContainer>
           <h2>Добави курс</h2>
           <Form onSubmit={submitHandler}>
@@ -99,7 +99,7 @@ const AddCourse = () => {
             </Form.Group>
 
             <Button
-              className="my-3 adminAddCategoryPage__content--button"
+              className="my-3 coursesPage__content--button"
               type="submit"
               variant=""
             >

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./TeacherCourse.css";
+import "./Course.css";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Button, ListGroup } from "react-bootstrap";
@@ -13,7 +13,7 @@ import {
 } from "../../../actions/categoriesActions";
 import swal from "sweetalert";
 
-const TeacherCourse = () => {
+const Course = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const token = JSON.parse(localStorage.getItem("jwtToken"));
@@ -78,11 +78,11 @@ const TeacherCourse = () => {
   }, []);
 
   return (
-    <div className="adminCategoriesPage__container">
-      <div className="adminCategoriesPage__sidebar">
+    <div className="coursesPage__container">
+      <div className="coursesPage__sidebar">
         <Sidebar />
       </div>
-      <div className="adminCategoriesPage__content">
+      <div className="coursesPage__content">
         <h2>Курсове</h2>
         {categories ? (
           categories.length === 0 ? (
@@ -93,7 +93,7 @@ const TeacherCourse = () => {
             categories.map((cat, index) => {
               return (
                 <ListGroup
-                  className="adminCategoriesPage__content--categoriesList"
+                  className="coursesPage__content--categoriesList"
                   key={index}
                 >
                   <ListGroup.Item
@@ -145,7 +145,7 @@ const TeacherCourse = () => {
         )}
         <Button
           variant=""
-          className="adminCategoriesPage__content--button"
+          className="coursesPage__content--button"
           onClick={addNewCategoryHandler}
         >
           Добави курс
@@ -155,4 +155,4 @@ const TeacherCourse = () => {
   );
 };
 
-export default TeacherCourse;
+export default Course;

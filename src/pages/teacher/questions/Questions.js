@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./AdminQuestionsPage.css";
+import "./Questions.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Button } from "react-bootstrap";
@@ -8,7 +8,7 @@ import Sidebar from "../../../components/Sidebar";
 import Question from "../../../components/Question";
 import Loader from "../../../components/Loader";
 
-const AdminQuestionsPage = () => {
+const Questions = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const urlParams = new URLSearchParams(window.location.search);
@@ -35,14 +35,14 @@ const AdminQuestionsPage = () => {
   }, []);
 
   return (
-    <div className="adminQuestionsPage__container">
-      <div className="adminQuestionsPage__sidebar">
+    <div className="questionsPage__container">
+      <div className="questionsPage__sidebar">
         <Sidebar />
       </div>
-      <div className="adminQuestionsPage__content">
+      <div className="questionsPage__content">
         <h2>{`Questions : ${quizTitle}`}</h2>
         <Button
-          className="adminQuestionsPage__content--button"
+          className="questionsPage__content--button"
           onClick={addNewQuestionHandler}
         >
           Добави въпрос
@@ -67,4 +67,4 @@ const AdminQuestionsPage = () => {
   );
 };
 
-export default AdminQuestionsPage;
+export default Questions;
