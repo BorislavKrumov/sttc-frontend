@@ -3,7 +3,7 @@ import "./App.css";
 import Header from "./components/Header";
 import AddCourse from "./pages/teacher/courses/AddCourse";
 import Course from "./pages/teacher/courses/Course";
-import AdminUpdateCategoryPage from "./pages/teacher/courses/UpdateCourse";
+import UpdateCourse from "./pages/teacher/courses/UpdateCourse";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import QuizzesPage from "./pages/teacher/quizzes/QuizzesPage";
@@ -17,6 +17,7 @@ import UserQuizzesPage from "./pages/users/UserQuizzesPage";
 import UserQuizManualPage from "./pages/users/UserQuizManualPage";
 import UserQuestionsPage from "./pages/users/UserQuestionsPage";
 import UserQuizResultPage from "./pages/users/UserQuizResultPage";
+import UsersPage from "./pages/admin/UsersPage";
 
 const App = () => {
   return (
@@ -29,8 +30,8 @@ const App = () => {
         <Route path="/teacherCourse" element={<Course />} />
         <Route path="/teacherAddCourse" element={<AddCourse />} />
         <Route
-          path="/adminUpdateCategory/:catId"
-          element={<AdminUpdateCategoryPage />}
+          path="/updateCourse/:catId"
+          element={<UpdateCourse />}
         />
         <Route path="/teacherQuizzes" element={<QuizzesPage />} />
         <Route path="/teacherAddQuiz" element={<AddQuiz />} />
@@ -41,6 +42,7 @@ const App = () => {
           path="/adminUpdateQuestion/:quesId"
           element={<UpdateQuestion />}
         />
+        <Route path="/adminUsers" element={<UsersPage/>} />
         <Route path="/profile" element={<UserProfilePage />} />
         <Route path="/quizzes" element={<UserQuizzesPage />} />
         <Route path="/quiz/*" element={<UserQuizzesPage />} />

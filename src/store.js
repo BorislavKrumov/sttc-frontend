@@ -6,11 +6,13 @@ import { categoriesReducer } from "./reducers/categoriesReducer";
 import { questionsReducer } from "./reducers/questionsReducer";
 import { quizResultReducer } from "./reducers/quizResultReducer";
 import { quizzesReducer } from "./reducers/quizzesReducer";
+import { usersReducer } from "./reducers/usersReducer";
 
 const reducer = combineReducers({
   loginReducer: loginReducer,
   registerReducer: registerReducer,
   categoriesReducer: categoriesReducer,
+  usersReducer: usersReducer,
   quizzesReducer: quizzesReducer,
   questionsReducer: questionsReducer,
   quizResultReducer: quizResultReducer,

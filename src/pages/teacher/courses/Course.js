@@ -31,7 +31,7 @@ const Course = () => {
 
   const updateCategoryHandler = (event, category) => {
     event.stopPropagation();
-    navigate(`/adminUpdateCategory/${category.catId}/`);
+    navigate(`/updateCourse/${category.catId}/`);
   };
 
   const deleteCategoryHandler = (event, category) => {

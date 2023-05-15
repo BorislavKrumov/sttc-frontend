@@ -59,10 +59,6 @@ const UserProfilePage = () => {
                 <td>Роля</td>
                 <td>{user.roles.length ? user.roles[0]?.roleName : "User"}</td>
               </tr>
-              <tr>
-                <td>Статус</td>
-                <td>{`${user.enabled}`}</td>
-              </tr>
             </tbody>
           </Table>
         </div>
