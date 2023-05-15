@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import SidebarUser from "../../components/SidebarUser";
+import Sidebar from "../../components/Sidebar";
 import "./UserQuizResultPage.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -35,7 +35,7 @@ const UserQuizResultPage = () => {
   return (
     <div className="userQuizResultPage__container">
       <div className="userQuizResultPage__sidebar">
-        <SidebarUser />
+        <Sidebar />
       </div>
 
       <div className="userQuizResultPage__content">

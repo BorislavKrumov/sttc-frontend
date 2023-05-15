@@ -6,9 +6,9 @@ import swal from "sweetalert";
 import { useParams } from "react-router-dom";
 import * as categoriesConstants from "../../../constants/categoriesConstants";
 import FormContainer from "../../../components/FormContainer";
-import Sidebar from "../../../components/Sidebar";
 import { updateCategory } from "../../../actions/categoriesActions";
 import { useNavigate } from "react-router-dom";
+import Sidebar from "../../../components/Sidebar";
 
 const UpdateCourse = () => {
   const dispatch = useDispatch();

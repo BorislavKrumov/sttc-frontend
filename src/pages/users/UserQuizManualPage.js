@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./UserQuizManualPage.css";
-import SidebarUser from "../../components/SidebarUser";
+import Sidebar from "../../components/Sidebar";
 import { useParams } from "react-router-dom";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -42,7 +42,7 @@ const UserQuizManualPage = () => {
   return (
     <div className="quizManualPage__container">
       <div className="quizManualPage__sidebar">
-        <SidebarUser />
+        <Sidebar />
       </div>
       {quiz ? (
         <div className="quizManualPage__content">

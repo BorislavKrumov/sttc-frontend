@@ -4,8 +4,6 @@ import Header from "./components/Header";
 import AddCourse from "./pages/teacher/courses/AddCourse";
 import Course from "./pages/teacher/courses/Course";
 import AdminUpdateCategoryPage from "./pages/teacher/courses/UpdateCourse";
-import AdminProfilePage from "./pages/admin/AdminProfilePage";
-import TeacherProfilePage from "./pages/teacher/TeacherProfilePage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import QuizzesPage from "./pages/teacher/quizzes/QuizzesPage";
@@ -28,8 +26,6 @@ const App = () => {
         <Route path="/" element={<LoginPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
-        <Route path="/adminProfile" element={<AdminProfilePage />} />
-        <Route path="/teacherProfile" element={<TeacherProfilePage />} />
         <Route path="/teacherCourse" element={<Course />} />
         <Route path="/teacherAddCourse" element={<AddCourse />} />
         <Route

@@ -6,12 +6,12 @@ import { Button, ListGroup } from "react-bootstrap";
 import * as categoriesConstants from "../../../constants/categoriesConstants";
 import Loader from "../../../components/Loader";
 import Message from "../../../components/Message";
-import Sidebar from "../../../components/Sidebar";
 import {
   deleteCategory,
   fetchCategories,
 } from "../../../actions/categoriesActions";
 import swal from "sweetalert";
+import Sidebar from "../../../components/Sidebar";
 
 const Course = () => {
   const navigate = useNavigate();

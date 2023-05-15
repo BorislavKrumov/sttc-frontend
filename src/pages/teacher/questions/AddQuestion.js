@@ -3,11 +3,11 @@ import { Button, Form } from "react-bootstrap";
 import swal from "sweetalert";
 import { addQuestion } from "../../../actions/questionsActions";
 import FormContainer from "../../../components/FormContainer";
-import Sidebar from "../../../components/Sidebar";
 import * as questionsConstants from "../../../constants/questionsConstants";
 import "./AddQuestion.css";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import Sidebar from "../../../components/Sidebar";
 
 const AddQuestion = () => {
   const [content, setContent] = useState("");

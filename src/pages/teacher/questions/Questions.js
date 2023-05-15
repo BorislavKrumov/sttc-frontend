@@ -4,9 +4,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Button } from "react-bootstrap";
 import { fetchQuestionsByQuiz } from "../../../actions/questionsActions";
-import Sidebar from "../../../components/Sidebar";
 import Question from "../../../components/Question";
 import Loader from "../../../components/Loader";
+import Sidebar from "../../../components/Sidebar";
 
 const Questions = () => {
   const navigate = useNavigate();

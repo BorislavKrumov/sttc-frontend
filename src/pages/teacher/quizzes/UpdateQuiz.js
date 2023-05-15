@@ -3,12 +3,12 @@ import { useNavigate, useParams } from "react-router-dom";
 import { Button, Form } from "react-bootstrap";
 import swal from "sweetalert";
 import { useDispatch, useSelector } from "react-redux";
-import Sidebar from "../../../components/Sidebar";
 import FormContainer from "../../../components/FormContainer";
 import * as quizzesConstants from "../../../constants/quizzesConstants";
 import { fetchCategories } from "../../../actions/categoriesActions";
 import "./UpdateQuiz.css";
 import { fetchQuizzes, updateQuiz } from "../../../actions/quizzesActions";
+import Sidebar from "../../../components/Sidebar";
 
 const UpdateQuiz = () => {
   const navigate = useNavigate();

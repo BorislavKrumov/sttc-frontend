@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import SidebarUser from "../../components/SidebarUser";
+import Sidebar from "../../components/Sidebar";
 import "./UserQuizzesPage.css";
 import { fetchQuizzes } from "../../actions/quizzesActions";
 import { Card, Col, Row } from "react-bootstrap";
@@ -31,7 +31,7 @@ const UserQuizzesPage = () => {
   return (
     <div className="userQuizzesPage__container">
       <div className="userQuizzesPage__sidebar">
-        <SidebarUser />
+        <Sidebar />
       </div>
 
       <div className="userQuizzesPage__content">

@@ -4,11 +4,11 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Button, ListGroup } from "react-bootstrap";
 import Message from "../../../components/Message";
-import Sidebar from "../../../components/Sidebar";
 import Loader from "../../../components/Loader";
 import { deleteQuiz, fetchQuizzes } from "../../../actions/quizzesActions";
 import * as quizzesConstants from "../../../constants/quizzesConstants";
 import swal from "sweetalert";
+import Sidebar from "../../../components/Sidebar";
 
 const QuizzesPage = () => {
   const navigate = useNavigate();

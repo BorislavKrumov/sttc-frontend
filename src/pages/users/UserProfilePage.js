@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import Image from "react-bootstrap/Image";
 import { fetchCategories } from "../../actions/categoriesActions";
 import { fetchQuizzes } from "../../actions/quizzesActions";
-import SidebarUser from "../../components/SidebarUser";
+import Sidebar from "../../components/Sidebar";
 import "./UserProfilePage.css";
 const UserProfilePage = () => {
   const dispatch = useDispatch();
@@ -29,7 +29,7 @@ const UserProfilePage = () => {
   return (
     <div className="userProfilePage__container">
       <div className="userProfilePage__sidebar">
-        <SidebarUser />
+        <Sidebar />
       </div>
       {user && (
         <div className="userProfilePage__content">

@@ -36,15 +36,7 @@ const LoginPage = () => {
     login(dispatch, username, password).then((data) => {
       if (data.type === authConstants.USER_LOGIN_SUCCESS) {
         setHasLoginError(false)
-        data.payload.roles.map((r) => {
-          if (r["roleName"] === "ADMIN") {
-            return navigate("/adminProfile");
-          } else if (r["roleName"] === "TEACHER") {
-            return navigate("/teacherProfile");
-          } else {
-            return navigate("/profile");
-          }
-        });
+        return navigate("/profile");
       } else if (data.type === authConstants.USER_LOGIN_FAILURE){
         setHasLoginError(true)
       }
@@ -53,10 +45,7 @@ const LoginPage = () => {
 
   useEffect(() => {
     if (token && user) {
-      user.roles.map((r) => {
-        if (r["roleName"] === "ADMIN") return navigate("/adminProfile");
-        else return navigate("/profile");
-      });
+      return navigate("/profile")
     }
   }, []);
   return (

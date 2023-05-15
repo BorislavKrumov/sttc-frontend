@@ -4,11 +4,11 @@ import { Button, Form } from "react-bootstrap";
 import "./AddQuiz.css";
 import { useDispatch, useSelector } from "react-redux";
 import swal from "sweetalert";
-import Sidebar from "../../../components/Sidebar";
 import FormContainer from "../../../components/FormContainer";
 import * as quizzesConstants from "../../../constants/quizzesConstants";
 import { addQuiz } from "../../../actions/quizzesActions";
 import { fetchCategories } from "../../../actions/categoriesActions";
+import Sidebar from "../../../components/Sidebar";
 
 const AddQuiz = () => {
   const [title, setTitle] = useState("");
