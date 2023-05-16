@@ -14,19 +14,40 @@
     margin-bottom: 20px;
   }
   
-  .card {
-    max-width: 500px;
-    margin-bottom: 20px;
+  .user-firstName {
+    font-weight: normal;
+    font-size: 18px; 
+  }
+
+
+  .card-title {
+    font-weight: bold;
+  }
+
+  .card-text strong {
+    font-weight: bold;
+    font-size: 16px;
   }
   
-  .status {
+  .card-text span.true {
+    color: green;
     font-weight: bold;
   }
   
-  .true {
-    color: #055e1a; /* Зелен цвят за "АКТИВЕН" */
+  .card-text span.false {
+    color: red;
+    font-weight: bold;
   }
-  
-  .false {
-    color: #e61c2d; /* Червен цвят за "НЕАКТИВЕН" */
+
+  .button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+  }
+
+  .button-container button:hover,
+  .button-container button:focus {
+    background-color: lightskyblue;
+    color:#212529;
+    border-color: lightskyblue;
   }

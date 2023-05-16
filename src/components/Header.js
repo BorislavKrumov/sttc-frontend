@@ -25,7 +25,7 @@ const Header = () => {
 
   return (
     <header>
-      <Navbar bg="dark" variant="dark" expand="lg" collapseOnSelect>
+      <Navbar style = {{backgroundColor: "#00202B"}} variant="dark" expand="lg" collapseOnSelect>
         <Container>
             <Navbar.Brand>Център за обучение по софтуерни технологии</Navbar.Brand>
 

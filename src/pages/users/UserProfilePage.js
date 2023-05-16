@@ -44,20 +44,20 @@ const UserProfilePage = () => {
           <Table bordered className="userProfilePage__content--table">
             <tbody>
               <tr>
-                <td>Име</td>
+                <td>Име:</td>
                 <td>{`${user.firstName} ${user.lastName}`}</td>
               </tr>
               <tr>
-                <td>Потребителско име</td>
+                <td>Потребителско име:</td>
                 <td>{user.username}</td>
               </tr>
               <tr>
-                <td>Е-mail</td>
+                <td>Е-mail:</td>
                 <td>{user.email}</td>
               </tr>
               <tr>
-                <td>Роля</td>
-                <td>{user.roles.length ? user.roles[0]?.roleName : "User"}</td>
+                <td>Роля:</td>
+                <td>{user.roles.length > 0 ? user.roles[0]?.roleName : "User"}</td>
               </tr>
             </tbody>
           </Table>

@@ -93,9 +93,11 @@ const Sidebar = ({ children }) => {
       return;
     }
 
-    if(!user.roles.length) {
+    if (user.roles.length === 0) {
       setMenuItems(userLinks);
+      return;
     }
+    
     switch(user.roles[0].roleName) {
       case "ADMIN":
         setMenuItems(adminLinks);
