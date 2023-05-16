@@ -1,0 +1,32 @@
+.quizzesPage__container {
+    display: flex;
+  }
+  
+  .quizzesPage__sidebar {
+    flex: 0 0 20%;
+  }
+  
+  .quizzesPage__content {
+    flex: 0 0 80%;
+  }
+  
+  h2 {
+    margin-bottom: 20px;
+  }
+  
+  .card {
+    max-width: 500px;
+    margin-bottom: 20px;
+  }
+  
+  .status {
+    font-weight: bold;
+  }
+  
+  .true {
+    color: #055e1a; /* Зелен цвят за "АКТИВЕН" */
+  }
+  
+  .false {
+    color: #e61c2d; /* Червен цвят за "НЕАКТИВЕН" */
+  }
