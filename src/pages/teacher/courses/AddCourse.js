@@ -55,59 +55,54 @@ const AddCourse = () => {
   }
 
   return (
-    <div className="coursesPage__container">
-      <div className="coursesPage__sidebar">
-        <Sidebar />
-      </div>
-      <div className="coursesPage__content">
-        <FormContainer>
-          <h2>Добави курс</h2>
-          <Form onSubmit={submitHandler}>
-            <Form.Group className="my-3" controlId="title">
-              <Form.Label>Заглавие</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Въведете име на курса"
-                value={title}
-                onChange={(e) => {
-                  setTitle(e.target.value);
-                }}
-                isInvalid={errors.title}
-              ></Form.Control>
-              <Form.Control.Feedback type="invalid">
-              {errors.title}
-            </Form.Control.Feedback>
-            </Form.Group>
+    <div className="coursesPage__content">
+      <FormContainer>
+        <h2>Добави курс</h2>
+        <Form onSubmit={submitHandler}>
+          <Form.Group className="my-3" controlId="title">
+            <Form.Label>Заглавие</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Въведете име на курса"
+              value={title}
+              onChange={(e) => {
+                setTitle(e.target.value);
+              }}
+              isInvalid={errors.title}
+            ></Form.Control>
+            <Form.Control.Feedback type="invalid">
+            {errors.title}
+          </Form.Control.Feedback>
+          </Form.Group>
 
-            <Form.Group className="my-3" controlId="description">
-              <Form.Label>Описание</Form.Label>
-              <Form.Control
-                style={{ textAlign: "top" }}
-                as="textarea"
-                rows="5"
-                type="text"
-                placeholder="Въведете описание на курса"
-                value={description}
-                onChange={(e) => {
-                  setDescription(e.target.value);
-                }}
-                isInvalid={errors.description}
-              ></Form.Control>
-              <Form.Control.Feedback type="invalid">
-              {errors.description}
-            </Form.Control.Feedback>
-            </Form.Group>
+          <Form.Group className="my-3" controlId="description">
+            <Form.Label>Описание</Form.Label>
+            <Form.Control
+              style={{ textAlign: "top" }}
+              as="textarea"
+              rows="5"
+              type="text"
+              placeholder="Въведете описание на курса"
+              value={description}
+              onChange={(e) => {
+                setDescription(e.target.value);
+              }}
+              isInvalid={errors.description}
+            ></Form.Control>
+            <Form.Control.Feedback type="invalid">
+            {errors.description}
+          </Form.Control.Feedback>
+          </Form.Group>
 
-            <Button
-              className="my-3 coursesPage__content--button"
-              type="submit"
-              variant=""
-            >
-              Добави
-            </Button>
-          </Form>
-        </FormContainer>
-      </div>
+          <Button
+            className="my-3 coursesPage__content--button"
+            type="submit"
+            variant=""
+          >
+            Добави
+          </Button>
+        </Form>
+      </FormContainer>
     </div>
   );
 };

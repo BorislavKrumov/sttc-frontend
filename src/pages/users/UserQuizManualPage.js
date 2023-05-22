@@ -40,10 +40,7 @@ const UserQuizManualPage = () => {
   }, []);
 
   return (
-    <div className="quizManualPage__container">
-      <div className="quizManualPage__sidebar">
-        <Sidebar />
-      </div>
+    <>
       {quiz ? (
         <div className="quizManualPage__content">
           <div className="quizManualPage__content--section">
@@ -115,7 +112,7 @@ const UserQuizManualPage = () => {
       ) : (
         <Loader />
       )}
-    </div>
+    </>
   );
 };
 

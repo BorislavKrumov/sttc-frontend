@@ -35,34 +35,29 @@ const Questions = () => {
   }, []);
 
   return (
-    <div className="questionsPage__container">
-      <div className="questionsPage__sidebar">
-        <Sidebar />
-      </div>
-      <div className="questionsPage__content">
-        <h2>{`Questions : ${quizTitle}`}</h2>
-        <Button
-          className="questionsPage__content--button"
-          onClick={addNewQuestionHandler}
-        >
-          Добави въпрос
-        </Button>
-        {questions ? (
-          questions.map((q, index) => {
-            return (
-              <Question
-                key={index}
-                number={index + 1}
-                answers={answers}
-                question={q}
-                isAdmin={true}
-              />
-            );
-          })
-        ) : (
-          <Loader />
-        )}
-      </div>
+    <div className="questionsPage__content">
+      <h2>{`Questions : ${quizTitle}`}</h2>
+      <Button
+        className="questionsPage__content--button"
+        onClick={addNewQuestionHandler}
+      >
+        Добави въпрос
+      </Button>
+      {questions ? (
+        questions.map((q, index) => {
+          return (
+            <Question
+              key={index}
+              number={index + 1}
+              answers={answers}
+              question={q}
+              isAdmin={true}
+            />
+          );
+        })
+      ) : (
+        <Loader />
+      )}
     </div>
   );
 };

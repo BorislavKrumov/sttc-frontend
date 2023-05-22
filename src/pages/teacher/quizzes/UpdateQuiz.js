@@ -89,107 +89,102 @@ const UpdateQuiz = () => {
   }, [categories]);
 
   return (
-    <div className="updateQuizPage__container">
-      <div className="updateQuizPage__sidebar">
-        <Sidebar />
-      </div>
-      <div className="updateQuizPage__content">
-        <FormContainer>
-          <h2>Обнови теста</h2>
-          <Form onSubmit={submitHandler}>
-            <Form.Group className="my-3" controlId="title">
-              <Form.Label>Заглавие</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Добави заглавие на теста"
-                value={title}
-                onChange={(e) => {
-                  setTitle(e.target.value);
-                }}
-              ></Form.Control>
-            </Form.Group>
+    <div className="updateQuizPage__content">
+      <FormContainer>
+        <h2>Обнови теста</h2>
+        <Form onSubmit={submitHandler}>
+          <Form.Group className="my-3" controlId="title">
+            <Form.Label>Заглавие</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Добави заглавие на теста"
+              value={title}
+              onChange={(e) => {
+                setTitle(e.target.value);
+              }}
+            ></Form.Control>
+          </Form.Group>
 
-            <Form.Group className="my-3" controlId="description">
-              <Form.Label>Описание</Form.Label>
-              <Form.Control
-                style={{ textAlign: "top" }}
-                as="textarea"
-                rows="3"
-                type="text"
-                placeholder="Добави описание на теста"
-                value={description}
-                onChange={(e) => {
-                  setDescription(e.target.value);
-                }}
-              ></Form.Control>
-            </Form.Group>
+          <Form.Group className="my-3" controlId="description">
+            <Form.Label>Описание</Form.Label>
+            <Form.Control
+              style={{ textAlign: "top" }}
+              as="textarea"
+              rows="3"
+              type="text"
+              placeholder="Добави описание на теста"
+              value={description}
+              onChange={(e) => {
+                setDescription(e.target.value);
+              }}
+            ></Form.Control>
+          </Form.Group>
 
-            <Form.Group className="my-3" controlId="maxMarks">
-              <Form.Label>Максимум точки</Form.Label>
-              <Form.Control
-                type="number"
-                placeholder="Добави максимум точки на теста"
-                value={maxMarks}
-                onChange={(e) => {
-                  setMaxMarks(e.target.value);
-                }}
-              ></Form.Control>
-            </Form.Group>
+          <Form.Group className="my-3" controlId="maxMarks">
+            <Form.Label>Максимум точки</Form.Label>
+            <Form.Control
+              type="number"
+              placeholder="Добави максимум точки на теста"
+              value={maxMarks}
+              onChange={(e) => {
+                setMaxMarks(e.target.value);
+              }}
+            ></Form.Control>
+          </Form.Group>
 
-            <Form.Group className="my-3" controlId="numberOfQuestions">
-              <Form.Label>Брой въпроси</Form.Label>
-              <Form.Control
-                type="number"
-                placeholder="Въведи брой въпроси"
-                value={numberOfQuestions}
-                onChange={(e) => {
-                  setNumberOfQuestions(e.target.value);
-                }}
-              ></Form.Control>
-            </Form.Group>
+          <Form.Group className="my-3" controlId="numberOfQuestions">
+            <Form.Label>Брой въпроси</Form.Label>
+            <Form.Control
+              type="number"
+              placeholder="Въведи брой въпроси"
+              value={numberOfQuestions}
+              onChange={(e) => {
+                setNumberOfQuestions(e.target.value);
+              }}
+            ></Form.Control>
+          </Form.Group>
 
-            <Form.Check
-            style={{borderColor:"rgb(68 177 49)"}}
-              className="my-3"
-              type="switch"
-              id="publish-switch"
-              label="Публичен тест"
-              onChange={onClickPublishedHandler}
-              checked={isActive}
-            />
+          <Form.Check
+          style={{borderColor:"rgb(68 177 49)"}}
+            className="my-3"
+            type="switch"
+            id="publish-switch"
+            label="Публичен тест"
+            onChange={onClickPublishedHandler}
+            checked={isActive}
+          />
 
-            <div className="my-3">
-              <label htmlFor="category-select">Избери курс:</label>
-              <Form.Select
-                aria-label="Choose Category"
-                id="category-select"
-                onChange={onSelectCategoryHandler}
-              >
-                <option value="n/a">Избери курс</option>
-                {categories ? (
-                  categories.map((cat, index) => (
-                    <option key={index} value={cat.catId}>
-                      {cat.title}
-                    </option>
-                  ))
-                ) : (
-                  <option value="">Изберете един от долу</option>
-                )}
-                {/* <option value="1">One</option>
-                  <option value="2">Two</option>
-                  <option value="3">Three</option> */}
-              </Form.Select>
-            </div>
-            <Button
-              className="my-5 updateQuizPage__content--button"
-              type="submit"
-              variant="primary"
+          <div className="my-3">
+            <label htmlFor="category-select">Избери курс:</label>
+            <Form.Select
+              aria-label="Choose Category"
+              id="category-select"
+              onChange={onSelectCategoryHandler}
             >
-              Добави
-            </Button>
-          </Form>
-        </FormContainer>
-      </div>
+              <option value="n/a">Избери курс</option>
+              {categories ? (
+                categories.map((cat, index) => (
+                  <option key={index} value={cat.catId}>
+                    {cat.title}
+                  </option>
+                ))
+              ) : (
+                <option value="">Изберете един от долу</option>
+              )}
+              {/* <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option> */}
+            </Form.Select>
+          </div>
+          <Button
+            className="my-5 updateQuizPage__content--button"
+            type="submit"
+            variant="primary"
+          >
+            Добави
+          </Button>
+        </Form>
+      </FormContainer>
     </div>
   );
 };

@@ -29,11 +29,6 @@ const UserQuizzesPage = () => {
   }, []);
 
   return (
-    <div className="userQuizzesPage__container">
-      <div className="userQuizzesPage__sidebar">
-        <Sidebar />
-      </div>
-
       <div className="userQuizzesPage__content">
         {quizzes ? (
           <Row>
@@ -108,7 +103,6 @@ const UserQuizzesPage = () => {
           <p>Няма налични тестове</p>
         )}
       </div>
-    </div>
   );
 };
 

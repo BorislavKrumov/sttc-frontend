@@ -102,122 +102,117 @@ const AddQuiz = () => {
     return newErrors;
   }
   return (
-    <div className="addQuiz__container">
-      <div className="addQuiz__sidebar">
-        <Sidebar />
-      </div>
-      <div className="addQuiz__content">
-        <FormContainer>
-          <h2>Добави тест</h2>
-          <Form onSubmit={submitHandler}>
-            <Form.Group className="my-3" controlId="title">
-              <Form.Label>Заглавие</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Добави заглавие на теста"
-                value={title}
-                onChange={(e) => {
-                  setTitle(e.target.value);
-                }}
-                isInvalid={errors.title}
-              ></Form.Control>
-              <Form.Control.Feedback type="invalid">
-              {errors.title}
-            </Form.Control.Feedback>
-            </Form.Group>
+    <div className="addQuiz__content">
+      <FormContainer>
+        <h2>Добави тест</h2>
+        <Form onSubmit={submitHandler}>
+          <Form.Group className="my-3" controlId="title">
+            <Form.Label>Заглавие</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Добави заглавие на теста"
+              value={title}
+              onChange={(e) => {
+                setTitle(e.target.value);
+              }}
+              isInvalid={errors.title}
+            ></Form.Control>
+            <Form.Control.Feedback type="invalid">
+            {errors.title}
+          </Form.Control.Feedback>
+          </Form.Group>
 
-            <Form.Group className="my-3" controlId="description">
-              <Form.Label>Описание</Form.Label>
-              <Form.Control
-                style={{ textAlign: "top" }}
-                as="textarea"
-                rows="3"
-                type="text"
-                placeholder="Добави описание на теста"
-                value={description}
-                onChange={(e) => {
-                  setDescription(e.target.value);
-                }}
-                isInvalid={errors.description}
-              ></Form.Control>
-              <Form.Control.Feedback type="invalid">
-              {errors.description}
-            </Form.Control.Feedback>
-            </Form.Group>
+          <Form.Group className="my-3" controlId="description">
+            <Form.Label>Описание</Form.Label>
+            <Form.Control
+              style={{ textAlign: "top" }}
+              as="textarea"
+              rows="3"
+              type="text"
+              placeholder="Добави описание на теста"
+              value={description}
+              onChange={(e) => {
+                setDescription(e.target.value);
+              }}
+              isInvalid={errors.description}
+            ></Form.Control>
+            <Form.Control.Feedback type="invalid">
+            {errors.description}
+          </Form.Control.Feedback>
+          </Form.Group>
 
-            <Form.Group className="my-3" controlId="maxMarks">
-              <Form.Label>Максимум точки</Form.Label>
-              <Form.Control
-                type="number"
-                placeholder="Добави максимум точки на теста"
-                value={maxMarks}
-                onChange={(e) => {
-                  setMaxMarks(e.target.value);
-                }}
-                isInvalid={errors.maxMarks}
-              ></Form.Control>
-              <Form.Control.Feedback type="invalid">
-              {errors.maxMarks}
-            </Form.Control.Feedback>
-            </Form.Group>
+          <Form.Group className="my-3" controlId="maxMarks">
+            <Form.Label>Максимум точки</Form.Label>
+            <Form.Control
+              type="number"
+              placeholder="Добави максимум точки на теста"
+              value={maxMarks}
+              onChange={(e) => {
+                setMaxMarks(e.target.value);
+              }}
+              isInvalid={errors.maxMarks}
+            ></Form.Control>
+            <Form.Control.Feedback type="invalid">
+            {errors.maxMarks}
+          </Form.Control.Feedback>
+          </Form.Group>
 
-            <Form.Group className="my-3" controlId="numberOfQuestions">
-              <Form.Label>Брой въпроси</Form.Label>
-              <Form.Control
-                type="number"
-                placeholder="Въведи брой въпроси"
-                value={numberOfQuestions}
-                onChange={(e) => {
-                  setNumberOfQuestions(e.target.value);
-                }}
-                isInvalid={errors.numberOfQuestions}
-              ></Form.Control>
-              <Form.Control.Feedback type="invalid">
-              {errors.numberOfQuestions}
-            </Form.Control.Feedback>
-            </Form.Group>
+          <Form.Group className="my-3" controlId="numberOfQuestions">
+            <Form.Label>Брой въпроси</Form.Label>
+            <Form.Control
+              type="number"
+              placeholder="Въведи брой въпроси"
+              value={numberOfQuestions}
+              onChange={(e) => {
+                setNumberOfQuestions(e.target.value);
+              }}
+              isInvalid={errors.numberOfQuestions}
+            ></Form.Control>
+            <Form.Control.Feedback type="invalid">
+            {errors.numberOfQuestions}
+          </Form.Control.Feedback>
+          </Form.Group>
 
-            <Form.Check
-              className="my-3"
-              type="switch"
-              id="publish-switch"
-              label="Публичен тест"
-              onChange={onClickPublishedHandler}
-              checked={isActive}
-            />
+          <Form.Check
+            className="my-3"
+            type="switch"
+            id="publish-switch"
+            label="Публичен тест"
+            onChange={onClickPublishedHandler}
+            checked={isActive}
+          />
 
-            <div className="my-3">
-              <label htmlFor="category-select">Избери курс:</label>
-              <Form.Select
-                aria-label="Choose Category"
-                id="category-select"
-                onChange={onSelectCategoryHandler}
-              >
-                <option value="n/a">Избери курс</option>
-                {course ? (
-                  course.map((cat, index) => (
-                    <option key={index} value={cat.catId}>
-                      {cat.title}
-                    </option>
-                  ))
-                ) : (
-                  <option value="">Изберете един от долу</option>
-                )}
-                {/* <option value="1">One</option>
-                  <option value="2">Two</option>
-                  <option value="3">Three</option> */}
-              </Form.Select>
-            </div>
-            <Button
-              className="my-5 addQuiz__content--button"
-              type="submit"
-              variant="primary"
+          <div className="my-3">
+            <label htmlFor="category-select">Избери курс:</label>
+            <Form.Select
+              aria-label="Choose Category"
+              id="category-select"
+              onChange={onSelectCategoryHandler}
             >
-              Добави
-            </Button>
-          </Form>
-        </FormContainer>
-      </div>
+              <option value="n/a">Избери курс</option>
+              {course ? (
+                course.map((cat, index) => (
+                  <option key={index} value={cat.catId}>
+                    {cat.title}
+                  </option>
+                ))
+              ) : (
+                <option value="">Изберете един от долу</option>
+              )}
+              {/* <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option> */}
+            </Form.Select>
+          </div>
+          <Button
+            className="my-5 addQuiz__content--button"
+            type="submit"
+            variant="primary"
+          >
+            Добави
+          </Button>
+        </Form>
+      </FormContainer>
     </div>
   );
 };

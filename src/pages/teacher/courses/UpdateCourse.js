@@ -39,51 +39,46 @@ const UpdateCourse = () => {
   };
 
   return (
-    <div className="updateCoursePage__container">
-      <div className="updateCoursePage__sidebar">
-        <Sidebar />
-      </div>
-      <div className="updateCoursePage__content">
-        <FormContainer>
-          <h2>Обнови курсът</h2>
-          <Form onSubmit={submitHandler}>
-            <Form.Group className="my-3" controlId="title">
-              <Form.Label>Заглавие</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Въведете име на курса"
-                value={title}
-                onChange={(e) => {
-                  setTitle(e.target.value);
-                }}
-              ></Form.Control>
-            </Form.Group>
+    <div className="updateCoursePage__content">
+      <FormContainer>
+        <h2>Обнови курсът</h2>
+        <Form onSubmit={submitHandler}>
+          <Form.Group className="my-3" controlId="title">
+            <Form.Label>Заглавие</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Въведете име на курса"
+              value={title}
+              onChange={(e) => {
+                setTitle(e.target.value);
+              }}
+            ></Form.Control>
+          </Form.Group>
 
-            <Form.Group className="my-3" controlId="description">
-              <Form.Label>Описание</Form.Label>
-              <Form.Control
-                style={{ textAlign: "top" }}
-                as="textarea"
-                rows="5"
-                type="text"
-                placeholder="Въведете описание на курса"
-                value={description}
-                onChange={(e) => {
-                  setDescription(e.target.value);
-                }}
-              ></Form.Control>
-            </Form.Group>
+          <Form.Group className="my-3" controlId="description">
+            <Form.Label>Описание</Form.Label>
+            <Form.Control
+              style={{ textAlign: "top" }}
+              as="textarea"
+              rows="5"
+              type="text"
+              placeholder="Въведете описание на курса"
+              value={description}
+              onChange={(e) => {
+                setDescription(e.target.value);
+              }}
+            ></Form.Control>
+          </Form.Group>
 
-            <Button
-              className="my-3 updateCoursePage__content--button"
-              type="submit"
-              variant=""
-            >
-              Обнови
-            </Button>
-          </Form>
-        </FormContainer>
-      </div>
+          <Button
+            className="my-3 updateCoursePage__content--button"
+            type="submit"
+            variant=""
+          >
+            Обнови
+          </Button>
+        </Form>
+      </FormContainer>
     </div>
   );
 };

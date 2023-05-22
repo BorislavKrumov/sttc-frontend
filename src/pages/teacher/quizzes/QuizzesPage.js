@@ -69,10 +69,6 @@ const QuizzesPage = () => {
   }, []);
 
   return (
-    <div className="quizzesPage__container">
-      <div className="quizzesPage__sidebar">
-        <Sidebar />
-      </div>
       <div className="quizzesPage__content">
         <h2>Тестове</h2>
         {quizzes ? (
@@ -179,7 +175,6 @@ const QuizzesPage = () => {
           Добави тест
         </Button>
       </div>
-    </div>
   );
 };
 

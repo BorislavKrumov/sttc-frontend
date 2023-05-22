@@ -1,13 +1,3 @@
-.quizzesPage__container {
-    display: flex;
-}
-
-.quizzesPage__sidebar {
-    position: sticky;
-    top: 0;
-    height: 100vh;
-}
-
 .quizzesPage__content {
     width: 70%;
     height: fit-content;

@@ -25,45 +25,40 @@ const UsersPage = () => {
       };
 
     return (
-        <div className="quizzesPage__container">
-        <div className="quizzesPage__sidebar">
-            <Sidebar />
+      <div className="quizzesPage__content">
+      <Container>
+      <div className="usersPage__header">
+          <h2>Потребители: </h2>
         </div>
-        <div className="quizzesPage__content">
-        <Container>
-        <div className="usersPage__header">
-            <h2>Потребители: </h2>
+        <div className="row">
+        {users.map((user) => (
+          <div className="col-md-6" key={user.id}>
+          <Card key={user.id} className="mb-3">
+            <Card.Body>
+              <Card.Title>Име: <span className="user-firstName">{user.firstName}</span></Card.Title>
+              <Card.Text><strong>Фамилия: </strong>{user.lastName}</Card.Text>
+              <Card.Text>
+              <strong>Роля: </strong>
+                {(user.roles || []).map((r) => r.roleName).join(", ")}
+              </Card.Text>
+              <Card.Text><strong>E-mail: </strong>{user.email}</Card.Text>
+              <Card.Text>
+              <strong>Статус: </strong><span className={user.enabled ? "true" : "false"}>
+                  {user.enabled ? "АКТИВЕН" : "НЕАКТИВЕН"}
+                </span>
+              </Card.Text>
+              <div className="button-container">
+                <Button variant="dark" onClick={() => handleUpdate(user.id)}>
+                  Обнови
+                </Button>
+              </div>
+            </Card.Body>
+          </Card>
           </div>
-          <div className="row">
-          {users.map((user) => (
-            <div className="col-md-6" key={user.id}>
-            <Card key={user.id} className="mb-3">
-              <Card.Body>
-                <Card.Title>Име: <span className="user-firstName">{user.firstName}</span></Card.Title>
-                <Card.Text><strong>Фамилия: </strong>{user.lastName}</Card.Text>
-                <Card.Text>
-                <strong>Роля: </strong>
-                 {(user.roles || []).map((r) => r.roleName).join(", ")}
-                </Card.Text>
-                <Card.Text><strong>E-mail: </strong>{user.email}</Card.Text>
-                <Card.Text>
-                <strong>Статус: </strong><span className={user.enabled ? "true" : "false"}>
-                    {user.enabled ? "АКТИВЕН" : "НЕАКТИВЕН"}
-                  </span>
-                </Card.Text>
-                <div className="button-container">
-                  <Button variant="dark" onClick={() => handleUpdate(user.id)}>
-                    Обнови
-                  </Button>
-                </div>
-              </Card.Body>
-            </Card>
-            </div>
-          ))}
-          </div>
-        </Container>
+        ))}
         </div>
-        </div>
+      </Container>
+      </div>
     );
 };
 

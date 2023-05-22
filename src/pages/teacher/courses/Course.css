@@ -1,13 +1,3 @@
-.coursesPage__container {
-    display: flex;
-}
-
-.coursesPage__sidebar {
-    position: sticky;
-    top: 0;
-    height: 100vh;
-}
-
 .coursesPage__content {
     width: 70%;
     height: fit-content;

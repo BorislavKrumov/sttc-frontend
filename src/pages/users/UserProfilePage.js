@@ -27,10 +27,7 @@ const UserProfilePage = () => {
   }, []);
 
   return (
-    <div className="userProfilePage__container">
-      <div className="userProfilePage__sidebar">
-        <Sidebar />
-      </div>
+    <>
       {user && (
         <div className="userProfilePage__content">
           <Image
@@ -63,7 +60,7 @@ const UserProfilePage = () => {
           </Table>
         </div>
       )}
-    </div>
+    </>
   );
 };
 

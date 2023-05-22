@@ -33,11 +33,6 @@ const UserQuizResultPage = () => {
   }, []);
 
   return (
-    <div className="userQuizResultPage__container">
-      <div className="userQuizResultPage__sidebar">
-        <Sidebar />
-      </div>
-
       <div className="userQuizResultPage__content">
         {quizResults && quizResults.length !== 0 ? (
           <Table bordered className="userQuizResultPage__content--table">
@@ -72,7 +67,6 @@ const UserQuizResultPage = () => {
           </Message>
         )}
       </div>
-    </div>
   );
 };
 

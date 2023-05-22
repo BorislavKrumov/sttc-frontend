@@ -78,79 +78,74 @@ const Course = () => {
   }, []);
 
   return (
-    <div className="coursesPage__container">
-      <div className="coursesPage__sidebar">
-        <Sidebar />
-      </div>
-      <div className="coursesPage__content">
-        <h2>Курсове</h2>
-        {categories ? (
-          categories.length === 0 ? (
-            <Message>
-              Няма налични курсове. Опитайте да добавите някой курс.
-            </Message>
-          ) : (
-            categories.map((cat, index) => {
-              return (
-                <ListGroup
-                  className="coursesPage__content--categoriesList"
-                  key={index}
+    <div className="coursesPage__content">
+      <h2>Курсове</h2>
+      {categories ? (
+        categories.length === 0 ? (
+          <Message>
+            Няма налични курсове. Опитайте да добавите някой курс.
+          </Message>
+        ) : (
+          categories.map((cat, index) => {
+            return (
+              <ListGroup
+                className="coursesPage__content--categoriesList"
+                key={index}
+              >
+                <ListGroup.Item
+                  style={{ borderWidth: "0px" }}
+                  className="d-flex"
+                  onClick={() => categoryClickHandler(cat.catId)}
                 >
-                  <ListGroup.Item
-                    style={{ borderWidth: "0px" }}
-                    className="d-flex"
-                    onClick={() => categoryClickHandler(cat.catId)}
+                  <div className="ms-2 me-auto">
+                    <div className="fw-bold">{cat.title}</div>
+                    {cat.description}
+                  </div>
+
+                  <div
+                    style={{
+                      display: "flex",
+                      height: "90%",
+                      margin: "auto 2px",
+                    }}
                   >
-                    <div className="ms-2 me-auto">
-                      <div className="fw-bold">{cat.title}</div>
-                      {cat.description}
-                    </div>
+                    <div
+                      onClick={(event) => updateCategoryHandler(event, cat)}
+                      style={{
+                        margin: "2px 8px",
+                        textAlign: "center",
+                        color: "rgb(68 177 49)",
+                        fontWeight: "500",
+                        cursor:"pointer"
+                      }}
+                    >{`Обнови`}</div>
 
                     <div
+                      onClick={(event) => deleteCategoryHandler(event, cat)}
                       style={{
-                        display: "flex",
-                        height: "90%",
-                        margin: "auto 2px",
+                        margin: "2px 8px",
+                        textAlign: "center",
+                        color: "red",
+                        fontWeight: "500",
+                        cursor:"pointer"
                       }}
-                    >
-                      <div
-                        onClick={(event) => updateCategoryHandler(event, cat)}
-                        style={{
-                          margin: "2px 8px",
-                          textAlign: "center",
-                          color: "rgb(68 177 49)",
-                          fontWeight: "500",
-                          cursor:"pointer"
-                        }}
-                      >{`Обнови`}</div>
-
-                      <div
-                        onClick={(event) => deleteCategoryHandler(event, cat)}
-                        style={{
-                          margin: "2px 8px",
-                          textAlign: "center",
-                          color: "red",
-                          fontWeight: "500",
-                          cursor:"pointer"
-                        }}
-                      >{`Изтрий`}</div>
-                    </div>
-                  </ListGroup.Item>
-                </ListGroup>
-              );
-            })
-          )
-        ) : (
-          <Loader />
-        )}
-        <Button
-          variant=""
-          className="coursesPage__content--button"
-          onClick={addNewCategoryHandler}
-        >
-          Добави курс
-        </Button>
-      </div>
+                    >{`Изтрий`}</div>
+                  </div>
+                </ListGroup.Item>
+              </ListGroup>
+            );
+          })
+        )
+      ) : (
+        <Loader />
+      )}
+      <Button
+        variant=""
+        className="coursesPage__content--button"
+        onClick={addNewCategoryHandler}
+      >
+        Добави курс
+      </Button>
     </div>
   );
 };
