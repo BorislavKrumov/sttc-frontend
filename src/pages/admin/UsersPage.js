@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
-import Sidebar from "../../components/Sidebar";
 import "./UsersPage.css";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchUsers } from "../../actions/userActions";
-import { Card, Container, Button  } from "react-bootstrap";
+import { fetchUsers, updateUser } from "../../actions/userActions";
+import { Container  } from "react-bootstrap";
+import { UserCard } from "../../components/UserCard";
+import * as userConstants from "../../constants/usersConstants";
+import swal from "sweetalert";
 
 const UsersPage = () => {
     const usersReducer = useSelector((state) => state.usersReducer);
@@ -18,10 +20,24 @@ const UsersPage = () => {
         })
     },[]);
 
-    const handleUpdate = (userId) => {
-        // Обнови данните за потребителя
-        
-        console.log("Обновяване на потребител с идентификатор:", userId);
+    const handleUpdate = (user) => {
+      user = {
+        firstName: "Simona",
+        userId: 8,
+        email: "viki112312@gmail.com",
+        roles: [{roleName: "TEACHER", roleDescription: "TEACHER"}],
+        active: false
+      }
+
+      updateUser(dispatch, user, token).then((data) => {
+        if (data.type === userConstants.UPDATE_USERS_SUCCESS) {
+          swal("Данните на потребителя са обновени!", `Обновяването на потребител с име ${user.firstName} е успешно!`, "success");
+        } else {
+          swal("Данните на потребителя НЕ са обновени!", `Обновяването на потребител с име ${user.firstName} НЕ е успешно!`, "error");
+        }        
+      });
+    
+        console.log("Обновяване на потребител с идентификатор:", user.userId);
       };
 
     return (
@@ -31,31 +47,7 @@ const UsersPage = () => {
           <h2>Потребители: </h2>
         </div>
         <div className="row">
-        {users.map((user) => (
-          <div className="col-md-6" key={user.id}>
-          <Card key={user.id} className="mb-3">
-            <Card.Body>
-              <Card.Title>Име: <span className="user-firstName">{user.firstName}</span></Card.Title>
-              <Card.Text><strong>Фамилия: </strong>{user.lastName}</Card.Text>
-              <Card.Text>
-              <strong>Роля: </strong>
-                {(user.roles || []).map((r) => r.roleName).join(", ")}
-              </Card.Text>
-              <Card.Text><strong>E-mail: </strong>{user.email}</Card.Text>
-              <Card.Text>
-              <strong>Статус: </strong><span className={user.enabled ? "true" : "false"}>
-                  {user.enabled ? "АКТИВЕН" : "НЕАКТИВЕН"}
-                </span>
-              </Card.Text>
-              <div className="button-container">
-                <Button variant="dark" onClick={() => handleUpdate(user.id)}>
-                  Обнови
-                </Button>
-              </div>
-            </Card.Body>
-          </Card>
-          </div>
-        ))}
+          {users.map((user) => <UserCard key={user.userId} user={user} handleUpdate={handleUpdate}/>)}
         </div>
       </Container>
       </div>

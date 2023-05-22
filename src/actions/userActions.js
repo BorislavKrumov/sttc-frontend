@@ -16,4 +16,21 @@ export const fetchUsers = async (dispatch, token) => {
       });
     }
   };
+
+  export const updateUser = async (dispatch, user, token) => {
+    dispatch({ type: userConstants.UPDATE_USERS_REQUEST });
+    const data = await userServices.updateUser(user, token);
+    if (data.status === 201) {
+      return dispatch({
+        type: userConstants.UPDATE_USERS_SUCCESS,
+        payload: data,
+      });
+    } else {
+      return dispatch({
+        type: userConstants.UPDATE_USERS_FAILURE,
+        payload: data,
+      });
+    }
+  };
+  
   

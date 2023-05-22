@@ -17,5 +17,23 @@ export const fetchUsers = async (token) => {
   }
 };
 
-const usersService = { fetchUsers };
+export const updateUser = async (user, token) => {
+  try {
+    const config = {
+      headers: { Authorization: `Bearer ${token}` },
+    };
+    const { data } = await axios.put("/api/manage/users", user, config);
+    console.log("usersService:updateUser() Success: ", data);
+    return data;
+  } catch (error) {
+    console.error(
+      "usersService:updateUser() Error: ",
+      error.response.statusText
+    );
+    return error.response.statusText;
+  }
+};
+
+
+const usersService = { fetchUsers, updateUser };
 export default usersService;

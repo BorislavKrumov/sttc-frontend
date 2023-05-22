@@ -4,13 +4,9 @@ import { Button, Form } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import * as categoriesConstants from "../../../constants/categoriesConstants";
 import FormContainer from "../../../components/FormContainer";
-import {
-  addCategory,
-  fetchCategories,
-} from "../../../actions/categoriesActions";
+import { addCategory } from "../../../actions/categoriesActions";
 import swal from "sweetalert";
 import { useNavigate } from "react-router-dom";
-import Sidebar from "../../../components/Sidebar";
 
 const AddCourse = () => {
   const [title, setTitle] = useState("");
