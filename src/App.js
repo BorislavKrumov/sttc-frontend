@@ -18,6 +18,7 @@ import UserQuizManualPage from "./pages/users/UserQuizManualPage";
 import UserQuestionsPage from "./pages/users/UserQuestionsPage";
 import UserQuizResultPage from "./pages/users/UserQuizResultPage";
 import UsersPage from "./pages/admin/UsersPage";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 const App = () => {
   return (
@@ -27,28 +28,26 @@ const App = () => {
         <Route path="/" element={<LoginPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
-        <Route path="/teacherCourse" element={<Course />} />
-        <Route path="/teacherAddCourse" element={<AddCourse />} />
-        <Route
-          path="/updateCourse/:catId"
-          element={<UpdateCourse />}
-        />
-        <Route path="/teacherQuizzes" element={<QuizzesPage />} />
-        <Route path="/teacherAddQuiz" element={<AddQuiz />} />
-        <Route path="/teacherUpdateQuiz/:quizId" element={<UpdateQuiz />} />
-        <Route path="/teacherQuestions" element={<Questions />} />
-        <Route path="/teacherAddQuestion" element={<AddQuestion />} />
-        <Route
-          path="/adminUpdateQuestion/:quesId"
-          element={<UpdateQuestion />}
-        />
-        <Route path="/adminUsers" element={<UsersPage/>} />
-        <Route path="/profile" element={<UserProfilePage />} />
-        <Route path="/quizzes" element={<UserQuizzesPage />} />
-        <Route path="/quiz/*" element={<UserQuizzesPage />} />
-        <Route path="/quizManual/" element={<UserQuizManualPage />} />
-        <Route path="/questions/" element={<UserQuestionsPage />} />
-        <Route path="/quizResults/" element={<UserQuizResultPage />} />
+
+        <Route path="/profile" element={<ProtectedRoute roles={["USER", "TEACHER", "ADMIN"]}> <UserProfilePage /> </ProtectedRoute>} />
+
+        <Route path="/teacherCourse" element={<ProtectedRoute roles={["TEACHER"]}> <Course /> </ProtectedRoute>} />
+        <Route path="/teacherAddCourse" element={<ProtectedRoute> <AddCourse roles={["TEACHER"]}/> </ProtectedRoute>} />
+        <Route path="/updateCourse/:catId" element={<ProtectedRoute> <UpdateCourse roles={["TEACHER"]}/> </ProtectedRoute>} />
+        <Route path="/teacherQuizzes" element={<ProtectedRoute> <QuizzesPage roles={["TEACHER"]}/> </ProtectedRoute>} />
+        <Route path="/teacherAddQuiz" element={<ProtectedRoute> <AddQuiz roles={["TEACHER"]}/> </ProtectedRoute>} />
+        <Route path="/teacherUpdateQuiz/:quizId" element={<ProtectedRoute roles={["TEACHER"]}> <UpdateQuiz /> </ProtectedRoute>} />
+        <Route path="/teacherQuestions" element={<ProtectedRoute roles={["TEACHER"]}> <Questions /> </ProtectedRoute>} />
+        <Route path="/teacherAddQuestion" element={<ProtectedRoute roles={["TEACHER"]}> <AddQuestion /> </ProtectedRoute>} />
+
+        <Route path="/adminUpdateQuestion/:quesId" element={<ProtectedRoute roles={["ADMIN"]}> <UpdateQuestion /> </ProtectedRoute>} />
+        <Route path="/adminUsers" element={<ProtectedRoute> <UsersPage roles={["ADMIN"]}/> </ProtectedRoute>} />
+
+        <Route path="/quizzes" element={<ProtectedRoute roles={["USER"]}> <UserQuizzesPage /> </ProtectedRoute>} />
+        <Route path="/quiz/*" element={<ProtectedRoute roles={["USER"]}> <UserQuizzesPage /> </ProtectedRoute>} />
+        <Route path="/quizManual/" element={<ProtectedRoute roles={["USER"]}> <UserQuizManualPage /> </ProtectedRoute>} />
+        <Route path="/questions/" element={<ProtectedRoute roles={["USER"]}> <UserQuestionsPage /> </ProtectedRoute>} />
+        <Route path="/quizResults/" element={<ProtectedRoute roles={["USER"]}> <UserQuizResultPage /> </ProtectedRoute>} />
       </Routes>
     </Router>
   );

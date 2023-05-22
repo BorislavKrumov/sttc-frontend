@@ -68,7 +68,7 @@ const RegisterPage = () => {
     if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email.value) == false) {
       newErrors.email = "Невалиден e-mail";
     }
-    // tuk se validirat poletata
+    
     return newErrors;
   }
 
@@ -216,7 +216,7 @@ const RegisterPage = () => {
             {errors.email}
           </Form.Control.Feedback>
         </Form.Group>
-        <Button variant="" className="my-3" type="submit" style={{ backgroundColor: "rgb(68 177 49)", color: "white" }}>
+        <Button variant="" className="my-3" type="submit" style={{ backgroundColor: "lightskyblue", color: "white", width: "100%", fontSize: "1.2rem" }}>
           Регистрация
         </Button>
       </Form>
@@ -226,7 +226,7 @@ const RegisterPage = () => {
       ) : (
         <Row className="py-3">
           <Col>
-            Имате акаунт?<Link to="/" style={{ color: "rgb(68 177 49)" }}>Вход</Link>
+            Имате акаунт? <Link to="/" style={{ color: "lightskyblue" }}>Вход</Link>
           </Col>
         </Row>
       )}
