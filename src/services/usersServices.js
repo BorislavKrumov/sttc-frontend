@@ -13,7 +13,7 @@ export const fetchUsers = async (token) => {
       "usersService:fetchUsers() Error: ",
       error.response.statusText
     );
-    return error.response.statusText;
+    return error.response;
   }
 };
 
@@ -30,7 +30,7 @@ export const updateUser = async (user, token) => {
       "usersService:updateUser() Error: ",
       error.response.statusText
     );
-    return error.response.statusText;
+    return error.response;
   }
 };
 

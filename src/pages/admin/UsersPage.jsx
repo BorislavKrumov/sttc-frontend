@@ -9,7 +9,7 @@ import swal from "sweetalert";
 
 const UsersPage = () => {
     const usersReducer = useSelector((state) => state.usersReducer);
-    const [users, setUsers] = useState(usersReducer.users);
+    const [users, setUsers] = useState(usersReducer.users || []);
     const dispatch = useDispatch();
     const token = JSON.parse(localStorage.getItem("jwtToken"));
 

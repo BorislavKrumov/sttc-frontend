@@ -66,6 +66,7 @@ export function loginReducer(state = loginInitialState, action) {
       };
 
     case authConstants.USER_LOGOUT:
+      localStorage.removeItem("jwtToken")
       return {
         ...state,
         loggedIn: false,

@@ -21,7 +21,7 @@ const fetchQuizzes = async (token, catId) => {
       "quizzesServices:fetchQuizzes() Error: ",
       error.response.statusText
     );
-    return error.response.statusText;
+    return error.response;
   }
 };
 

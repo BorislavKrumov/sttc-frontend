@@ -16,7 +16,7 @@ const fetchQuestionsByQuiz = async (quizId, token) => {
       "questionsServices:fetchQuestionsByQuiz() Error: ",
       error.response.statusText
     );
-    return error.response.statusText;
+    return error.response;
   }
 };
 

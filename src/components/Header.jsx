@@ -1,27 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { Navbar, Nav, Container } from "react-bootstrap";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { LinkContainer } from "react-router-bootstrap";
 import { useNavigate } from "react-router-dom";
+import * as authConstants from "../constants/authConstants";
+
 
 const Header = () => {
-  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const loginReducer = useSelector((state) => state.loginReducer);
-  const [isLoggedIn, setIsLoggedIn] = useState(loginReducer.loggedIn);
-  let profilePageUrl = "";
 
   const logoutHandler = () => {
-    setIsLoggedIn(false);
-    localStorage.clear();
-    navigate("/login");
+    dispatch({
+      type: authConstants.USER_LOGOUT,
+    });
   };
-
-  useEffect(() => {
-    if (localStorage.getItem("jwtToken")) {
-      setIsLoggedIn(true);
-      profilePageUrl = "/"    
-    }
-  }, [navigate]);
 
   return (
     <header>
@@ -32,15 +25,15 @@ const Header = () => {
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="justify-content-end flex-grow-1 pe-3">
-              {isLoggedIn ? (
-                  <Nav.Link>{loginReducer.user.firstName}</Nav.Link>
+              {loginReducer.loggedIn ? (
+                  <Nav.Link>{loginReducer.user ? loginReducer.user.firstName : ""}</Nav.Link>
               ) : (
                 <LinkContainer to="/">
                   <Nav.Link>Вход</Nav.Link>
                 </LinkContainer>
               )}
 
-              {isLoggedIn ? (
+              {loginReducer.loggedIn ? (
                 <LinkContainer to="/">
                   <Nav.Link onClick={logoutHandler}>Изход</Nav.Link>
                 </LinkContainer>

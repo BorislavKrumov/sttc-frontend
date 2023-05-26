@@ -13,7 +13,7 @@ const fetchCategories = async (token) => {
       "categoryService:fetchCategories() Error: ",
       error.response.statusText
     );
-    return error.response.statusText;
+    return error.response;
   }
 };
 

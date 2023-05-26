@@ -38,7 +38,7 @@ const login = async (username, password) => {
     }
   } catch (error) {
     console.error("authService:login() Error: ", error.response.statusText);
-    return error.response.statusText;
+    return error.response;
   }
 };
 
