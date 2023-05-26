@@ -14,21 +14,20 @@ const UsersPage = () => {
     const token = JSON.parse(localStorage.getItem("jwtToken"));
 
     useEffect(() => {
-        fetchUsers(dispatch, token).then((data) => {
+      fetchUsers(dispatch, token).then((data) => {
         const users = data.payload;
         setUsers(users);
-        })
+      })
     },[]);
 
     const handleUpdate = (user) => {
       user = {
-        firstName: "Simona",
-        userId: 8,
-        email: "viki112312@gmail.com",
-        roles: [{roleName: "TEACHER", roleDescription: "TEACHER"}],
-        active: false
+        ...user,
+        roles: [{
+          roleName: user.role,
+          roleDescription: user.role
+        }]
       }
-
       updateUser(dispatch, user, token).then((data) => {
         if (data.type === userConstants.UPDATE_USERS_SUCCESS) {
           swal("Данните на потребителя са обновени!", `Обновяването на потребител с име ${user.firstName} е успешно!`, "success");
