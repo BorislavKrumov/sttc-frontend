@@ -1,18 +1,20 @@
-import React, { useEffect } from "react";
-import { Table } from "react-bootstrap";
+import React, { useEffect, useState } from "react";
+import { Card, Button, Row, Col } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Image from "react-bootstrap/Image";
 import { fetchCategories } from "../../actions/categoriesActions";
 import { fetchQuizzes } from "../../actions/quizzesActions";
-import Sidebar from "../../components/Sidebar";
 import "./UserProfilePage.css";
+
 const UserProfilePage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const loginReducer = useSelector((state) => state.loginReducer);
   const user = loginReducer.user;
   const token = JSON.parse(localStorage.getItem("jwtToken"));
+
+  const [selectedImage, setSelectedImage] = useState(null);
 
   useEffect(() => {
     fetchCategories(dispatch, token);
@@ -26,38 +28,55 @@ const UserProfilePage = () => {
     if (!localStorage.getItem("jwtToken")) navigate("/");
   }, []);
 
+  const handleImageChange = (e) => {
+    setSelectedImage(e.target.files[0]);
+  };
+
+  const handleImageUpload = () => {
+    // Implement the image upload logic here
+    // You can use a library like Axios to send the image to a server
+    // and update the user's profile picture
+  };
+
   return (
     <>
       {user && (
         <div className="userProfilePage__content">
-          <Image
-            className="userProfilePage__content--profilePic"
-            width="20%"
-            height="20%"
-            roundedCircle
-            src="images/user.png"
-          />
-
-          <Table bordered className="userProfilePage__content--table">
-            <tbody>
-              <tr>
-                <td>Име:</td>
-                <td>{`${user.firstName} ${user.lastName}`}</td>
-              </tr>
-              <tr>
-                <td>Потребителско име:</td>
-                <td>{user.username}</td>
-              </tr>
-              <tr>
-                <td>Е-mail:</td>
-                <td>{user.email}</td>
-              </tr>
-              <tr>
-                <td>Роля:</td>
-                <td>{user.roles.length > 0 ? user.roles[0]?.roleName : "User"}</td>
-              </tr>
-            </tbody>
-          </Table>
+          
+              <Card.Title className="title">
+                <h3>Добре дошли, {user.firstName}!</h3>
+              </Card.Title>
+              <Card className="userProfilePage__content--card userProfilePage__card">
+                <Card.Body>
+                  <Image
+                    className="userProfilePage__content--profilePic"
+                    roundedCircle
+                    src={selectedImage ? URL.createObjectURL(selectedImage) : "images/user.png"}
+                  />
+                  <div className="userProfilePage__card-text">Моля, качете своя профилна снимка!</div>
+                  <div className="userProfilePage__content--buttons">
+                    <input type="file" accept="image/*" onChange={handleImageChange} />
+                    <Button variant="primary" onClick={handleImageUpload}>
+                      Качи снимка
+                    </Button>
+                  </div>
+                  <Card.Text className="userProfilePage__card-text">
+                    <strong>Име:</strong> {`${user.firstName} ${user.lastName}`}
+                  </Card.Text>
+                  <Card.Text className="userProfilePage__card-text">
+                    <strong>Потребителско име:</strong> {user.username}
+                  </Card.Text>
+                  <Card.Text className="userProfilePage__card-text">
+                    <strong>E-mail:</strong> {user.email}
+                  </Card.Text>
+                  <Card.Text className="userProfilePage__card-text">
+                    <strong>Роля:</strong>{" "}
+                    {user.roles.length > 0 ? user.roles[0]?.roleName : "User"}
+                  </Card.Text>
+                </Card.Body>
+              </Card>
+            
+          
         </div>
       )}
     </>

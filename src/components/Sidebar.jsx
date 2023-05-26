@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./Sidebar.css";
-import { FaBars, FaUserAlt } from "react-icons/fa";
+import { FaBars, FaTimes, FaUserAlt } from "react-icons/fa";
 import { MdQuiz, MdQueue } from "react-icons/md";
 import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -126,7 +126,8 @@ const Sidebar = ({ children }) => {
                 Меню
               </h1> }
               <div style={{ marginLeft: isOpen ? "50px" : "0px" }} className="bars">
-                <FaBars onClick={toggle} />
+              <FaBars onClick={toggle} style={{ display: isOpen ? "none" : "block" }} />
+              <FaTimes onClick={toggle} style={{ display: isOpen ? "block" : "none" }} />
               </div>
             </div>
             {menuItems.map((item, index) => (

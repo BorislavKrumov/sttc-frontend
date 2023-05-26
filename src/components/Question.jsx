@@ -129,7 +129,7 @@ const Question = ({ number, answers, question, isAdmin = false }) => {
               style={{
                 margin: "2px 8px",
                 textAlign: "center",
-                color: "rgb(68 177 49)",
+                color: "lightskyblue",
                 fontWeight: "500",
                 cursor: "pointer",
               }}

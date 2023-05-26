@@ -20,6 +20,9 @@ import UserQuizResultPage from "./pages/users/UserQuizResultPage";
 import UsersPage from "./pages/admin/UsersPage";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Sidebar from "./components/Sidebar";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { faMoon, faRocket } from "@fortawesome/free-solid-svg-icons";
+library.add(faMoon, faRocket);
 
 const App = () => {
   return (
