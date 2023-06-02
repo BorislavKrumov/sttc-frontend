@@ -34,7 +34,6 @@ const UserProfilePage = () => {
 
   const handleImageUpload = () => {
     // Implement the image upload logic here
-    // You can use a library like Axios to send the image to a server
     // and update the user's profile picture
   };
 
@@ -56,7 +55,7 @@ const UserProfilePage = () => {
                   <div className="userProfilePage__card-text">Моля, качете своя профилна снимка!</div>
                   <div className="userProfilePage__content--buttons">
                     <input type="file" accept="image/*" onChange={handleImageChange} />
-                    <Button variant="primary" onClick={handleImageUpload}>
+                    <Button variant="dark" onClick={handleImageUpload}>
                       Качи снимка
                     </Button>
                   </div>

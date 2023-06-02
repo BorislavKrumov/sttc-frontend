@@ -89,7 +89,7 @@ const LoginPage = () => {
           variant=""
           className="my-3"
           type="submit"
-          style={{ backgroundColor: "lightskyblue", color: "white", width: "100%", fontSize: "1.2rem" }}
+          style={{ backgroundColor: "#00202B", color: "white", width: "100%", fontSize: "1.2rem" }}
         >
           Вход
         </Button>

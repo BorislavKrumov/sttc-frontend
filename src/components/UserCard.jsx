@@ -48,7 +48,7 @@ export const UserCard = ({user, handleUpdate}) => {
             </Form.Select>
             </Card.Text>
             <div className="button-container">
-            <Button variant="dark" onClick={() => handleUpdate({...user, userId: user.userId, email, role, active})}>
+            <Button style={{ backgroundColor: "#00202B", color: "white"}} variant="dark" onClick={() => handleUpdate({...user, userId: user.userId, email, role, active})}>
                 Обнови
             </Button>
             </div>

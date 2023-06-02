@@ -216,7 +216,7 @@ const RegisterPage = () => {
             {errors.email}
           </Form.Control.Feedback>
         </Form.Group>
-        <Button variant="" className="my-3" type="submit" style={{ backgroundColor: "lightskyblue", color: "white", width: "100%", fontSize: "1.2rem" }}>
+        <Button variant="" className="my-3" type="submit" style={{ backgroundColor: "#00202B", color: "white", width: "100%", fontSize: "1.2rem" }}>
           Регистрация
         </Button>
       </Form>
