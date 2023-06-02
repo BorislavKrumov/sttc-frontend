@@ -10,7 +10,7 @@ const UserQuizzesPage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const urlParams = new URLSearchParams(window.location.search);
-  const catId = urlParams.get("catId");
+  const courseId = urlParams.get("courseId");
   const token = JSON.parse(localStorage.getItem("jwtToken"));
 
   const quizzesReducer = useSelector((state) => state.quizzesReducer);
@@ -33,7 +33,7 @@ const UserQuizzesPage = () => {
         {quizzes ? (
           <Row>
             {quizzes.map((q, index) => {
-              if ((catId && catId == q.category.catId) || catId == null)
+              if ((courseId && courseId == q.course.id) || courseId == null)
                 return (
                   <Col
                     key={index}
@@ -61,7 +61,7 @@ const UserQuizzesPage = () => {
                       <Card.Body>
                         <Card.Title>{q.title}</Card.Title>
                         <Card.Subtitle className="mb-2 text-muted">
-                          {q.category.title}
+                          {q.course.title}
                         </Card.Subtitle>
                         <Card.Text>{q.description}</Card.Text>
                         <div className="userQuizzesPage__content--ButtonsList">

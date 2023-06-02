@@ -174,18 +174,6 @@ const UpdateQuestion = () => {
               <option value="option2">Отговор 2</option>
               <option value="option3">Отговор 3</option>
               <option value="option4">Отговор 4</option>
-              {/* {categories ? (
-                categories.map((cat, index) => (
-                  <option key={index} value={cat.catId}>
-                    {cat.title}
-                  </option>
-                ))
-              ) : (
-                <option value="">Choose one from below</option>
-              )} */}
-              {/* <option value="1">One</option>
-              <option value="2">Two</option>
-              <option value="3">Three</option> */}
             </Form.Select>
           </div>
           <Button

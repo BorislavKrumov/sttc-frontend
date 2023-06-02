@@ -29,9 +29,6 @@ const App = () => {
     <Router>
       <Header />
       <Routes>
-        <Route path="/" element={<LoginPage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/register" element={<RegisterPage />} />
 
         <Route 
           path="/profile"
@@ -46,7 +43,7 @@ const App = () => {
 
         <Route path="/teacherCourse" element={<ProtectedRoute roles={["TEACHER"]}> <Sidebar> <Course /> </Sidebar> </ProtectedRoute>} />
         <Route path="/teacherAddCourse" element={<ProtectedRoute roles={["TEACHER"]}> <Sidebar> <AddCourse /> </Sidebar> </ProtectedRoute>} />
-        <Route path="/updateCourse/:catId" element={<ProtectedRoute roles={["TEACHER"]}> <Sidebar> <UpdateCourse /> </Sidebar> </ProtectedRoute>} />
+        <Route path="/updateCourse/:courseId" element={<ProtectedRoute roles={["TEACHER"]}> <Sidebar> <UpdateCourse /> </Sidebar> </ProtectedRoute>} />
         <Route path="/teacherQuizzes" element={<ProtectedRoute roles={["TEACHER"]}> <Sidebar> <QuizzesPage /> </Sidebar> </ProtectedRoute>} />
         <Route path="/teacherAddQuiz" element={<ProtectedRoute roles={["TEACHER"]}> <Sidebar> <AddQuiz /> </Sidebar> </ProtectedRoute>} />
         <Route path="/teacherUpdateQuiz/:quizId" element={<ProtectedRoute roles={["TEACHER"]}> <Sidebar> <UpdateQuiz /> </Sidebar> </ProtectedRoute>} />
@@ -61,7 +58,11 @@ const App = () => {
         <Route path="/quizManual/" element={<ProtectedRoute roles={["USER"]}> <Sidebar> <UserQuizManualPage /> </Sidebar> </ProtectedRoute>} />
         <Route path="/questions/" element={<ProtectedRoute roles={["USER"]}> <Sidebar> <UserQuestionsPage /> </Sidebar> </ProtectedRoute>} />
         <Route path="/quizResults/" element={<ProtectedRoute roles={["USER"]}> <Sidebar> <UserQuizResultPage /> </Sidebar> </ProtectedRoute>} />
-        <Route path="*" element={<LoginPage />} />
+        <Route path="*" element={<LoginPage />} />     
+        <Route path="/" element={<LoginPage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/register" element={<RegisterPage />} />
+
       </Routes>
     </Router>
   );

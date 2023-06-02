@@ -3,7 +3,7 @@ import { Card, Button, Row, Col } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Image from "react-bootstrap/Image";
-import { fetchCategories } from "../../actions/categoriesActions";
+import { fetchCourses } from "../../actions/coursesActions";
 import { fetchQuizzes } from "../../actions/quizzesActions";
 import "./UserProfilePage.css";
 
@@ -17,7 +17,7 @@ const UserProfilePage = () => {
   const [selectedImage, setSelectedImage] = useState(null);
 
   useEffect(() => {
-    fetchCategories(dispatch, token);
+    fetchCourses(dispatch, token);
   }, [dispatch]);
 
   useEffect(() => {

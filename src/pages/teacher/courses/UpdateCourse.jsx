@@ -4,9 +4,9 @@ import { Button, Form } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import swal from "sweetalert";
 import { useParams } from "react-router-dom";
-import * as categoriesConstants from "../../../constants/categoriesConstants";
+import * as coursesConstants from "../../../constants/coursesConstants";
 import FormContainer from "../../../components/FormContainer";
-import { updateCategory } from "../../../actions/categoriesActions";
+import { updateCourse } from "../../../actions/coursesActions";
 import { useNavigate } from "react-router-dom";
 import Sidebar from "../../../components/Sidebar";
 
@@ -14,22 +14,22 @@ const UpdateCourse = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const params = useParams();
-  const catId = params.catId;
+  const courseId = params.courseId;
 
-  const oldCategory = useSelector((state) =>
-    state.categoriesReducer.categories.filter((cat) => cat.catId == catId)
+  const oldCourse = useSelector((state) =>
+    state.coursesReducer.courses.filter((cat) => cat.id == courseId)
   )[0];
-  const [title, setTitle] = useState(oldCategory ? oldCategory.title : "");
+  const [title, setTitle] = useState(oldCourse ? oldCourse.title : "");
   const [description, setDescription] = useState(
-    oldCategory ? oldCategory.description : ""
+    oldCourse ? oldCourse.description : ""
   );
   const token = JSON.parse(localStorage.getItem("jwtToken"));
 
   const submitHandler = (e) => {
     e.preventDefault();
-    const category = { catId: catId, title: title, description: description };
-    updateCategory(dispatch, category, token).then((data) => {
-      if (data.type === categoriesConstants.UPDATE_CATEGORY_SUCCESS) {
+    const course = { id: courseId, title: title, description: description };
+    updateCourse(dispatch, course, token).then((data) => {
+      if (data.type === coursesConstants.UPDATE_COURSE_SUCCESS) {
         swal("Курсът е обновен!", `${title} е правилно обновен`, "success");
       } else {
         swal("Курсът НЕ е обновен!", `${title} НЕ е обновен`, "error");

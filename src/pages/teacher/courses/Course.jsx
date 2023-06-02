@@ -3,13 +3,13 @@ import "./Course.css";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Button, ListGroup } from "react-bootstrap";
-import * as categoriesConstants from "../../../constants/categoriesConstants";
+import * as coursesConstants from "../../../constants/coursesConstants";
 import Loader from "../../../components/Loader";
 import Message from "../../../components/Message";
 import {
-  deleteCategory,
-  fetchCategories,
-} from "../../../actions/categoriesActions";
+  deleteCourse,
+  fetchCourses,
+} from "../../../actions/coursesActions";
 import swal from "sweetalert";
 import Sidebar from "../../../components/Sidebar";
 
@@ -18,23 +18,23 @@ const Course = () => {
   const dispatch = useDispatch();
   const token = JSON.parse(localStorage.getItem("jwtToken"));
 
-  const categoriesReducer = useSelector((state) => state.categoriesReducer);
-  const [categories, setCategories] = useState(categoriesReducer.categories);
+  const coursesReducer = useSelector((state) => state.coursesReducer);
+  const [courses, setCourses] = useState(coursesReducer.courses);
 
-  const categoryClickHandler = (catId) => {
-    navigate(`/teacherQuizzes/?catId=${catId}`);
+  const courseClickHandler = (courseId) => {
+    navigate(`/teacherQuizzes/?courseId=${courseId}`);
   };
 
-  const addNewCategoryHandler = () => {
+  const addNewCourseHandler = () => {
     navigate("/teacherAddCourse");
   };
 
-  const updateCategoryHandler = (event, category) => {
+  const updateCourseHandler = (event, course) => {
     event.stopPropagation();
-    navigate(`/updateCourse/${category.catId}/`);
+    navigate(`/updateCourse/${course.courseId}/`);
   };
 
-  const deleteCategoryHandler = (event, category) => {
+  const deleteCourseHandler = (event, course) => {
     event.stopPropagation();
     swal({
       title: "Сигурен ли си?",
@@ -44,23 +44,23 @@ const Course = () => {
       dangerMode: true,
     }).then((willDelete) => {
       if (willDelete) {
-        deleteCategory(dispatch, category.catId, token).then((data) => {
-          if (data.type === categoriesConstants.DELETE_CATEGORY_SUCCESS) {
+        deleteCourse(dispatch, course.id, token).then((data) => {
+          if (data.type === coursesConstants.DELETE_COURSE_SUCCESS) {
             swal(
               "Курсът е изтрит",
-              `${category.title} е успешно изтрит`,
+              `${course.title} е успешно изтрит`,
               "success"
             );
           } else {
             swal(
               "Курсът не е изтрит!",
-              `${category.title} не е изтрито`,
+              `${course.title} не е изтрито`,
               "error"
             );
           }
         });
       } else {
-        swal(`${category.title} е в безопастност`);
+        swal(`${course.title} е в безопастност`);
       }
     });
   };
@@ -70,9 +70,9 @@ const Course = () => {
   }, []);
 
   useEffect(() => {
-    if (categories.length === 0) {
-      fetchCategories(dispatch, token).then((data) => {
-        setCategories(data.payload);
+    if (courses.length === 0) {
+      fetchCourses(dispatch, token).then((data) => {
+        setCourses(data.payload);
       });
     }
   }, []);
@@ -80,13 +80,13 @@ const Course = () => {
   return (
     <div className="coursesPage__content">
       <h2>Курсове</h2>
-      {categories ? (
-        categories.length === 0 ? (
+      {courses ? (
+        courses.length === 0 ? (
           <Message>
             Няма налични курсове. Опитайте да добавите някой курс.
           </Message>
         ) : (
-          categories.map((cat, index) => {
+          courses.map((cat, index) => {
             return (
               <ListGroup
                 className="coursesPage__content--categoriesList"
@@ -95,7 +95,7 @@ const Course = () => {
                 <ListGroup.Item
                   style={{ borderWidth: "0px" }}
                   className="d-flex"
-                  onClick={() => categoryClickHandler(cat.catId)}
+                  onClick={() => courseClickHandler(cat.id)}
                 >
                   <div className="ms-2 me-auto">
                     <div className="fw-bold">{cat.title}</div>
@@ -110,7 +110,7 @@ const Course = () => {
                     }}
                   >
                     <div
-                      onClick={(event) => updateCategoryHandler(event, cat)}
+                      onClick={(event) => updateCourseHandler(event, cat)}
                       style={{
                         margin: "2px 8px",
                         textAlign: "center",
@@ -121,7 +121,7 @@ const Course = () => {
                     >{`Обнови`}</div>
 
                     <div
-                      onClick={(event) => deleteCategoryHandler(event, cat)}
+                      onClick={(event) => deleteCourseHandler(event, cat)}
                       style={{
                         margin: "2px 8px",
                         textAlign: "center",
@@ -142,7 +142,7 @@ const Course = () => {
       <Button
         variant=""
         className="coursesPage__content--button"
-        onClick={addNewCategoryHandler}
+        onClick={addNewCourseHandler}
       >
         Добави курс
       </Button>

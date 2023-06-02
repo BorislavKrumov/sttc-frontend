@@ -2,7 +2,7 @@ import { createStore, combineReducers, applyMiddleware } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
 import { loginReducer, registerReducer } from "./reducers/authReducer";
-import { categoriesReducer } from "./reducers/categoriesReducer";
+import { coursesReducer } from "./reducers/coursesReducer";
 import { questionsReducer } from "./reducers/questionsReducer";
 import { quizResultReducer } from "./reducers/quizResultReducer";
 import { quizzesReducer } from "./reducers/quizzesReducer";
@@ -11,7 +11,7 @@ import { usersReducer } from "./reducers/usersReducer";
 const reducer = combineReducers({
   loginReducer: loginReducer,
   registerReducer: registerReducer,
-  categoriesReducer: categoriesReducer,
+  coursesReducer: coursesReducer,
   usersReducer: usersReducer,
   quizzesReducer: quizzesReducer,
   questionsReducer: questionsReducer,

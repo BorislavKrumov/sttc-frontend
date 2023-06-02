@@ -7,7 +7,7 @@ import swal from "sweetalert";
 import FormContainer from "../../../components/FormContainer";
 import * as quizzesConstants from "../../../constants/quizzesConstants";
 import { addQuiz } from "../../../actions/quizzesActions";
-import { fetchCategories } from "../../../actions/categoriesActions";
+import { fetchCourses } from "../../../actions/coursesActions";
 import Sidebar from "../../../components/Sidebar";
 
 const AddQuiz = () => {
@@ -16,11 +16,11 @@ const AddQuiz = () => {
   const [maxMarks, setMaxMarks] = useState(0);
   const [numberOfQuestions, setNumberOfQuestions] = useState(0);
   const [isActive, setIsActive] = useState(false);
-  const [selectedCategoryId, setSelectedCategoryId] = useState(null);
+  const [selectedCourseId, setSelectedCategoryId] = useState(null);
   const [errors, setErrors] = useState({});
 
-  const categoriesReducer = useSelector((state) => state.categoriesReducer);
-  const [course, setCategories] = useState(categoriesReducer.categories);
+  const coursesReducer = useSelector((state) => state.coursesReducer);
+  const [courses, setCourses] = useState(coursesReducer.courses);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -43,20 +43,20 @@ const AddQuiz = () => {
     if (Object.values(newErrors).length > 0) {
       return;
     }
-    if (selectedCategoryId !== null && selectedCategoryId !== "n/a") {
+    if (selectedCourseId !== null && selectedCourseId !== "n/a") {
       const quiz = {
         title: title,
         description: description,
         maxMarks: maxMarks,
         numberOfQuestions: numberOfQuestions,
         isActive: isActive,
-        category: {
-          catId: selectedCategoryId,
-          title: course.filter((cat) => cat.catId == selectedCategoryId)[0][
+        course: {
+          id: selectedCourseId,
+          title: courses.filter((course) => course.id == selectedCourseId)[0][
             "title"
           ],
-          description: course.filter(
-            (cat) => cat.catId == selectedCategoryId
+          description: courses.filter(
+            (course) => course.id == selectedCourseId
           )[0]["description"],
         },
       };
@@ -68,7 +68,7 @@ const AddQuiz = () => {
         }
       });
     } else {
-      alert("Select valid category!");
+      alert("Select valid course!");
     }
   };
 
@@ -77,9 +77,9 @@ const AddQuiz = () => {
   }, []);
 
   useEffect(() => {
-    if (course.length === 0) {
-      fetchCategories(dispatch, token).then((data) => {
-        setCategories(data.payload);
+    if (courses.length === 0) {
+      fetchCourses(dispatch, token).then((data) => {
+        setCourses(data.payload);
       });
     }
   }, []);
@@ -190,9 +190,9 @@ const AddQuiz = () => {
               onChange={onSelectCategoryHandler}
             >
               <option value="n/a">Избери курс</option>
-              {course ? (
-                course.map((cat, index) => (
-                  <option key={index} value={cat.catId}>
+              {courses ? (
+                courses.map((cat, index) => (
+                  <option key={index} value={cat.id}>
                     {cat.title}
                   </option>
                 ))

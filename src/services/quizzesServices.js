@@ -1,17 +1,17 @@
 import axios from "axios";
 
-const fetchQuizzes = async (token, catId) => {
+const fetchQuizzes = async (token, courseId) => {
   try {
     const config = {
       headers: { Authorization: `Bearer ${token}` },
     };
 
     let quizzes = null;
-    if (catId === null) {
+    if (courseId === null) {
       const { data } = await axios.get("/api/quiz/", config);
       quizzes = data;
     } else {
-      const { data } = await axios.get(`/api/quiz/?catId=${catId}`, config);
+      const { data } = await axios.get(`/api/quiz/?catId=${courseId}`, config);
       quizzes = data;
     }
     console.log("quizzesServices:fetchQuizzes() Success: ", quizzes);

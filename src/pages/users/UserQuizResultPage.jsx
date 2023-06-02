@@ -52,7 +52,7 @@ const UserQuizResultPage = () => {
                   <tr>
                     <td>{r.quiz.quizId}</td>
                     <td>{r.quiz.title}</td>
-                    <td>{r.quiz.category.title}</td>
+                    <td>{r.quiz.course.title}</td>
                     <td>{r.totalObtainedMarks}</td>
                     <td>{r.quiz.maxMarks}</td>
                     <td>{r.attemptDatetime}</td>

@@ -48,6 +48,7 @@ const LoginPage = () => {
       return navigate("/profile")
     }
   }, []);
+  
   return (
     <FormContainer>
       <h1>Вход</h1>

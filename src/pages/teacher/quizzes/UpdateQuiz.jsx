@@ -5,7 +5,7 @@ import swal from "sweetalert";
 import { useDispatch, useSelector } from "react-redux";
 import FormContainer from "../../../components/FormContainer";
 import * as quizzesConstants from "../../../constants/quizzesConstants";
-import { fetchCategories } from "../../../actions/categoriesActions";
+import { fetchCourses } from "../../../actions/coursesActions";
 import "./UpdateQuiz.css";
 import { fetchQuizzes, updateQuiz } from "../../../actions/quizzesActions";
 import Sidebar from "../../../components/Sidebar";
@@ -27,24 +27,24 @@ const UpdateQuiz = () => {
     oldQuiz.numberOfQuestions
   );
   const [isActive, setIsActive] = useState(oldQuiz.isActive);
-  const [selectedCategoryId, setSelectedCategoryId] = useState(null);
+  const [selectedCourseId, setSelectedCourseId] = useState(null);
 
-  const categoriesReducer = useSelector((state) => state.categoriesReducer);
-  const [categories, setCategories] = useState(categoriesReducer.categories);
+  const coursesReducer = useSelector((state) => state.coursesReducer);
+  const [courses, setCourses] = useState(coursesReducer.courses);
 
   const onClickPublishedHandler = () => {
     setIsActive(!isActive);
   };
 
-  const onSelectCategoryHandler = (e) => {
-    setSelectedCategoryId(e.target.value);
+  const onSelectCourseHandler = (e) => {
+    setSelectedCourseId(e.target.value);
   };
 
   const token = JSON.parse(localStorage.getItem("jwtToken"));
 
   const submitHandler = (e) => {
     e.preventDefault();
-    if (selectedCategoryId !== null && selectedCategoryId !== "n/a") {
+    if (selectedCourseId !== null && selectedCourseId !== "n/a") {
       const quiz = {
         quizId:quizId,
         title: title,
@@ -52,13 +52,13 @@ const UpdateQuiz = () => {
         maxMarks: maxMarks,
         numberOfQuestions: numberOfQuestions,
         isActive: isActive,
-        category: {
-          catId: selectedCategoryId,
-          title: categories.filter((cat) => cat.catId == selectedCategoryId)[0][
+        course: {
+          id: selectedCourseId,
+          title: courses.filter((cat) => cat.id == selectedCourseId)[0][
             "title"
           ],
-          description: categories.filter(
-            (cat) => cat.catId == selectedCategoryId
+          description: courses.filter(
+            (cat) => cat.id == selectedCourseId
           )[0]["description"],
         },
       };
@@ -81,12 +81,12 @@ const UpdateQuiz = () => {
   }, []);
 
   useEffect(() => {
-    if (categories.length === 0) {
-      fetchCategories(dispatch, token).then((data) => {
-        setCategories(data.payload);
+    if (courses.length === 0) {
+      fetchCourses(dispatch, token).then((data) => {
+        setCourses(data.payload);
       });
     }
-  }, [categories]);
+  }, [courses]);
 
   return (
     <div className="updateQuizPage__content">
@@ -157,14 +157,14 @@ const UpdateQuiz = () => {
           <div className="my-3">
             <label htmlFor="category-select">Избери курс:</label>
             <Form.Select
-              aria-label="Choose Category"
+              aria-label="Choose Course"
               id="category-select"
-              onChange={onSelectCategoryHandler}
+              onChange={onSelectCourseHandler}
             >
               <option value="n/a">Избери курс</option>
-              {categories ? (
-                categories.map((cat, index) => (
-                  <option key={index} value={cat.catId}>
+              {courses ? (
+                courses.map((cat, index) => (
+                  <option key={index} value={cat.id}>
                     {cat.title}
                   </option>
                 ))

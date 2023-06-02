@@ -14,14 +14,14 @@ const QuizzesPage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const urlParams = new URLSearchParams(window.location.search);
-  const catId = urlParams.get("catId");
+  const courseId = urlParams.get("courseId");
   const token = JSON.parse(localStorage.getItem("jwtToken"));
 
   const quizzesReducer = useSelector((state) => state.quizzesReducer);
   const [quizzes, setQuizzes] = useState(quizzesReducer.quizzes);
 
   const addNewQuizHandler = () => {
-    navigate("teacherAddQuiz");
+    navigate("/teacherAddQuiz");
   };
   const deleteQuizHandler = (quiz) => {
     swal({
@@ -53,7 +53,7 @@ const QuizzesPage = () => {
   };
 
   const questionsHandler = (quizTitle, quizId) => {
-    navigate(`teacherQuestions/?quizId=${quizId}&quizTitle=${quizTitle}`);
+    navigate(`/teacherQuestions/?quizId=${quizId}&quizTitle=${quizTitle}`);
   };
 
   useEffect(() => {
@@ -76,7 +76,7 @@ const QuizzesPage = () => {
             <Message>Няма тестове. Опитайте да добавите нов тест.</Message>
           ) : (
             quizzes.map((quiz, index) => {
-              if ((catId && quiz.category.catId == catId) || (catId == null))
+              if ((courseId && quiz.course.id == courseId) || (courseId == null))
                 return (
                   <ListGroup
                     className="quizzesPage__content--quizzesList"
@@ -85,7 +85,7 @@ const QuizzesPage = () => {
                     <ListGroup.Item className="align-items-start" action>
                       <div className="ms-2 me-auto">
                         <div className="fw-bold">{quiz.title}</div>
-                        <p style={{ color: "grey" }}>{quiz.category.title}</p>
+                        <p style={{ color: "grey" }}>{quiz.course.title}</p>
                         {<p className="my-3">{quiz.description}</p>}
                         <div className="quizzesPage__content--ButtonsList">
                           <div

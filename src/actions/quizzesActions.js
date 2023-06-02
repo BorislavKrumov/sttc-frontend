@@ -1,9 +1,9 @@
 import * as quizzesConstants from "../constants/quizzesConstants";
 import quizzesServices from "../services/quizzesServices";
 
-export const fetchQuizzes = async (dispatch, token, catId = null) => {
+export const fetchQuizzes = async (dispatch, token, courseId = null) => {
   dispatch({ type: quizzesConstants.FETCH_QUIZZES_REQUEST });
-  const data = await quizzesServices.fetchQuizzes(token, catId);
+  const data = await quizzesServices.fetchQuizzes(token, courseId);
   if (data) {
     return dispatch({
       type: quizzesConstants.FETCH_QUIZZES_SUCCESS,

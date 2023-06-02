@@ -3,8 +3,7 @@ import "./Sidebar.css";
 import { FaBars, FaTimes, FaUserAlt } from "react-icons/fa";
 import { MdQuiz, MdQueue } from "react-icons/md";
 import { NavLink } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchCategories } from "../actions/categoriesActions";
+import { useSelector } from "react-redux";
 import { TbLayoutGrid, TbReport, TbLayoutGridAdd } from "react-icons/tb";
 
 const userLinks = [
@@ -65,10 +64,6 @@ const teacherLinks = [{
 
 const Sidebar = ({ children }) => {
   const loginReducer = useSelector((state) => state.loginReducer);
-  const categoriesReducer = useSelector((state) => state.categoriesReducer);
-  const [categories, setCategories] = useState(categoriesReducer.categories);
-  const dispatch = useDispatch();
-  const token = JSON.parse(localStorage.getItem("jwtToken"));
   const [menuItems, setMenuItems] = useState([
     {
       path: "/profile",

@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import "./AddCourse.css";
 import { Button, Form } from "react-bootstrap";
 import { useDispatch } from "react-redux";
-import * as categoriesConstants from "../../../constants/categoriesConstants";
+import * as coursesConstants from "../../../constants/coursesConstants";
 import FormContainer from "../../../components/FormContainer";
-import { addCategory } from "../../../actions/categoriesActions";
+import { addCourse } from "../../../actions/coursesActions";
 import swal from "sweetalert";
 import { useNavigate } from "react-router-dom";
 
@@ -26,9 +26,9 @@ const AddCourse = () => {
     if (Object.values(newErrors).length > 0) {
       return;
     }
-    const category = { title: title, description: description };
-    addCategory(dispatch, category, token).then((data) => {
-      if (data.type === categoriesConstants.ADD_CATEGORY_SUCCESS) {
+    const course = { title: title, description: description };
+    addCourse(dispatch, course, token).then((data) => {
+      if (data.type === coursesConstants.ADD_COURSE_SUCCESS) {
         swal("Курсът е добавен!", `${title} е добавено успешно`, "success");
       } else {
         swal("Курсът НЕ е добавен!", `${title} НЕ е добавено успешно`, "error");

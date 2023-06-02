@@ -1,53 +1,53 @@
 import axios from "axios";
 
-const fetchCategories = async (token) => {
+const fetchCourses = async (token) => {
   try {
     const config = {
       headers: { Authorization: `Bearer ${token}` },
     };
     const { data } = await axios.get("/api/course/", config);
-    console.log("categoryService:fetchCategories() Success: ", data);
+    console.log("courseService:fetchCourse() Success: ", data);
     return data;
   } catch (error) {
-    console.error(
-      "categoryService:fetchCategories() Error: ",
+    console.error( 
+      "courseService:fetchCourse() Error: ",
       error.response.statusText
     );
     return error.response;
   }
 };
 
-const addCategory = async (category, token) => {
+const addCourse = async (course, token) => {
   try {
     const config = {
       headers: { Authorization: `Bearer ${token}` },
     };
-    const { data } = await axios.post("/api/course/", category, config);
-    console.log("categoryService:addCategory() Success: ", data);
+    const { data } = await axios.post("/api/course/", course, config);
+    console.log("courseService:addCourse() Success: ", data);
     return { data: data, isAdded: true, error: null };
   } catch (error) {
     console.error(
-      "categoryService:addCategory() Error: ",
+      "courseService:addCourse() Error: ",
       error.response.statusText
     );
     return { data: null, isAdded: false, error: error.response.statusText };
   }
 };
 
-const deleteCategory = async (catId, token) => {
+const deleteCourse = async (id, token) => {
   try {
     const config = {
       headers: { Authorization: `Bearer ${token}` },
     };
-    const { data } = await axios.delete(`/api/course/${catId}/`, config);
-    console.log("categoryService:deleteCategory()  Success: ", data);
+    const { data } = await axios.delete(`/api/course/${id}/`, config);
+    console.log("courseService:deleteCourse()  Success: ", data);
     return {
       isDeleted: true,
       error: null,
     };
   } catch (error) {
     console.error(
-      "categoryService:deleteCategory()  Error: ",
+      "ourseService:deleteCourse()  Error: ",
       error.response.statusText
     );
     return {
@@ -57,17 +57,17 @@ const deleteCategory = async (catId, token) => {
   }
 };
 
-const updateCategory = async (category, token) => {
+const updateCourse = async (course, token) => {
   try {
     const config = {
       headers: { Authorization: `Bearer ${token}` },
     };
     const { data } = await axios.put(
-      `/api/course/${category.catId}/`,
-      category,
+      `/api/course/${course.id}/`,
+      course,
       config
     );
-    console.log("categoryService:updateCategory()  Success: ", data);
+    console.log("courseService:updateCourse()  Success: ", data);
     return {
       data: data,
       isUpdated: true,
@@ -75,7 +75,7 @@ const updateCategory = async (category, token) => {
     };
   } catch (error) {
     console.error(
-      "categoryService:updateCategory()  Error: ",
+      "courseService:updateCourse()  Error: ",
       error.response.statusText
     );
     return {
@@ -86,10 +86,10 @@ const updateCategory = async (category, token) => {
   }
 };
 
-const categoriesService = {
-  addCategory,
-  fetchCategories,
-  updateCategory,
-  deleteCategory,
+const coursesService = {
+  addCourse,
+  fetchCourses,
+  updateCourse,
+  deleteCourse,
 };
-export default categoriesService;
+export default coursesService;
