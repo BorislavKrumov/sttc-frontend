@@ -18,6 +18,12 @@
     display: block;
     width: 20%;
     margin: 20px auto;
-    background-color: lightskyblue;
+    background-color: black;
     color:white;
+}
+
+.updateCoursePage__content--button:hover{
+    background:lightskyblue;
+    color: #000;
+    transition: all 0.5s;
 }

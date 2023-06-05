@@ -7,7 +7,9 @@
   }
   
   .quizzesPage__content {
-    flex: 0 0 80%;
+    width: 70%;
+    height: fit-content;
+    padding: 8px;
   }
   
   h2 {

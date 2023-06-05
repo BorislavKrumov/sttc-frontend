@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import Sidebar from "../../components/Sidebar";
 import "./UserQuizzesPage.css";
 import { fetchQuizzes } from "../../actions/quizzesActions";
 import { Card, Col, Row } from "react-bootstrap";
+import Message from "../../components/Message";
 
 const UserQuizzesPage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const urlParams = new URLSearchParams(window.location.search);
-  const courseId = urlParams.get("courseId");
+  const courseId = Number(urlParams.get("courseId"));
   const token = JSON.parse(localStorage.getItem("jwtToken"));
 
   const quizzesReducer = useSelector((state) => state.quizzesReducer);
@@ -30,10 +30,11 @@ const UserQuizzesPage = () => {
 
   return (
       <div className="userQuizzesPage__content">
-        {quizzes ? (
+        <h2>Тестове</h2>
+        {quizzes && quizzes.find(q => q.course.id === courseId) || !courseId ? (
           <Row>
             {quizzes.map((q, index) => {
-              if ((courseId && courseId == q.course.id) || courseId == null)
+              if ((courseId && courseId == q.course.id) || courseId == null || courseId == 0)
                 return (
                   <Col
                     key={index}
@@ -100,7 +101,7 @@ const UserQuizzesPage = () => {
             })}
           </Row>
         ) : (
-          <p>Няма налични тестове</p>
+          <Message>Няма налични тестове.</Message>
         )}
       </div>
   );

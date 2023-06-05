@@ -17,5 +17,11 @@ hr{
     margin: 30px auto;
     display: block;
     color: white;
-    background-color: lightskyblue;
+    background-color: black;
+}
+
+.quizManualPage__content--button:hover{
+    background:lightskyblue;
+    color: #000;
+    transition: all 0.5s;
 }

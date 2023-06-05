@@ -16,7 +16,7 @@ const AddQuiz = () => {
   const [maxMarks, setMaxMarks] = useState(0);
   const [numberOfQuestions, setNumberOfQuestions] = useState(0);
   const [isActive, setIsActive] = useState(false);
-  const [selectedCourseId, setSelectedCategoryId] = useState(null);
+  const [selectedCourseId, setSelectedCourseId] = useState(null);
   const [errors, setErrors] = useState({});
 
   const coursesReducer = useSelector((state) => state.coursesReducer);
@@ -30,7 +30,7 @@ const AddQuiz = () => {
   };
 
   const onSelectCategoryHandler = (e) => {
-    setSelectedCategoryId(e.target.value);
+    setSelectedCourseId(Number(e.target.value));
   };
 
   const token = JSON.parse(localStorage.getItem("jwtToken"));

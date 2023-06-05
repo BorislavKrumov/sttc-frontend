@@ -16,9 +16,15 @@
     width: 20%;
     height: 2.5em;
     margin: 20px auto;
-    background-color: lightskyblue;
+    background-color: black;
     color: white;
     justify-content: flex-start;
+}
+
+.userQuestionsPage__content--button:hover{
+    background:lightskyblue;
+    color: #000;
+    transition: all 0.5s;
 }
 
 .userQuestionsPage__content--spinner{

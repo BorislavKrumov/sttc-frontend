@@ -64,7 +64,7 @@ const UserQuizManualPage = () => {
               </li>
               <li>Можете да опитате теста произволен брой пъти.</li>
               <li>
-                Има <strong>{quiz.numberOfQuestions} въпроси</strong> в
+                Има <strong>{quiz.numberOfQuestions} въпросa</strong> в
                 този тест.
               </li>
               <li>Този тест е само с цел практика.</li>

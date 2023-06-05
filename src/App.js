@@ -41,7 +41,7 @@ const App = () => {
           }
         />
 
-        <Route path="/teacherCourse" element={<ProtectedRoute roles={["TEACHER"]}> <Sidebar> <Course /> </Sidebar> </ProtectedRoute>} />
+        <Route path="/teacherCourse" element={<ProtectedRoute roles={["TEACHER", "USER"]}> <Sidebar> <Course /> </Sidebar> </ProtectedRoute>} />
         <Route path="/teacherAddCourse" element={<ProtectedRoute roles={["TEACHER"]}> <Sidebar> <AddCourse /> </Sidebar> </ProtectedRoute>} />
         <Route path="/updateCourse/:courseId" element={<ProtectedRoute roles={["TEACHER"]}> <Sidebar> <UpdateCourse /> </Sidebar> </ProtectedRoute>} />
         <Route path="/teacherQuizzes" element={<ProtectedRoute roles={["TEACHER"]}> <Sidebar> <QuizzesPage /> </Sidebar> </ProtectedRoute>} />

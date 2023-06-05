@@ -13,6 +13,11 @@ const userLinks = [
     icon: <FaUserAlt />,
   },
   {
+    path: "/teacherCourse",
+    name: "Курсове",
+    icon: <TbLayoutGrid />,
+  },  
+  {
     path: "/quizResults",
     name: "Информация",
     icon: <TbReport />,
@@ -57,7 +62,7 @@ const teacherLinks = [{
 },
 {
   path: "/teacherAddQuiz",
-  name: "Добави",
+  name: "Добави тест",
   icon: <MdQueue />,
 },
 ];

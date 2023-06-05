@@ -17,12 +17,20 @@ const Course = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const token = JSON.parse(localStorage.getItem("jwtToken"));
-
+  const loginReducer = useSelector((state) => state.loginReducer);
   const coursesReducer = useSelector((state) => state.coursesReducer);
   const [courses, setCourses] = useState(coursesReducer.courses);
 
   const courseClickHandler = (courseId) => {
-    navigate(`/teacherQuizzes/?courseId=${courseId}`);
+    if(loginReducer.user && 
+      loginReducer.user.roles &&
+      loginReducer.user.roles.length > 0 &&
+      loginReducer.user.roles.find(role => role.roleName === "TEACHER")) {
+        navigate(`/teacherQuizzes/?courseId=${courseId}`);
+      } else {
+        navigate(`/quiz/?courseId=${courseId}`);
+      }
+
   };
 
   const addNewCourseHandler = () => {
@@ -102,6 +110,11 @@ const Course = () => {
                     {cat.description}
                   </div>
 
+                {loginReducer.user && 
+                loginReducer.user.roles &&
+                loginReducer.user.roles.length > 0 &&
+                loginReducer.user.roles.find(role => role.roleName === "TEACHER") &&
+
                   <div
                     style={{
                       display: "flex",
@@ -131,6 +144,7 @@ const Course = () => {
                       }}
                     >{`Изтрий`}</div>
                   </div>
+                }
                 </ListGroup.Item>
               </ListGroup>
             );
@@ -139,13 +153,18 @@ const Course = () => {
       ) : (
         <Loader />
       )}
-      <Button
-        variant=""
-        className="coursesPage__content--button"
-        onClick={addNewCourseHandler}
-      >
-        Добави курс
-      </Button>
+        {loginReducer.user && 
+        loginReducer.user.roles &&
+        loginReducer.user.roles.length > 0 &&
+        loginReducer.user.roles.find(role => role.roleName === "TEACHER") &&      
+          <Button
+            variant=""
+            className="coursesPage__content--button"
+            onClick={addNewCourseHandler}
+          >
+            Добави курс
+          </Button>
+        }
     </div>
   );
 };

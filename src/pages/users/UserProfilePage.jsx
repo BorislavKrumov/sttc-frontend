@@ -6,6 +6,7 @@ import Image from "react-bootstrap/Image";
 import { fetchCourses } from "../../actions/coursesActions";
 import { fetchQuizzes } from "../../actions/quizzesActions";
 import "./UserProfilePage.css";
+import axios from "axios";
 
 const UserProfilePage = () => {
   const dispatch = useDispatch();
@@ -32,9 +33,19 @@ const UserProfilePage = () => {
     setSelectedImage(e.target.files[0]);
   };
 
-  const handleImageUpload = () => {
+  const handleImageUpload = async () => {
     // Implement the image upload logic here
     // and update the user's profile picture
+    const formData = new FormData();
+    formData.append('file', selectedImage);
+    formData.append('id', user.userId);
+    const config = {
+      headers: { Authorization: `Bearer ${token}` },
+    };
+
+    // Make a request to the backend API to upload the picture
+    const { data } = await axios.put(`/api/manage/users/da`, formData, config);
+    console.log("users:uploadPicture() Success: ", data);
   };
 
   return (
