@@ -71,8 +71,10 @@ const UpdateQuestion = () => {
           swal(
             "Въпросът е обновен!",
             `${content} е правилно обновен`,
-            "success"
-          );
+            "success", 
+          ).then(() => {
+            navigate(-1);
+          });
         } else {
           swal("Въпросът НЕ е обновен!", `${content} НЕ е обновен`, "error");
         }
@@ -181,7 +183,7 @@ const UpdateQuestion = () => {
             type="submit"
             variant="primary"
           >
-            Добави
+            Обнови
           </Button>
         </Form>
       </FormContainer>

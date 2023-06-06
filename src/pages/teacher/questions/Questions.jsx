@@ -36,7 +36,7 @@ const Questions = () => {
 
   return (
     <div className="questionsPage__content">
-      <h2>{`Questions : ${quizTitle}`}</h2>
+      <h2>{`Въпроси: ${quizTitle}`}</h2>
       <Button
         className="questionsPage__content--button"
         onClick={addNewQuestionHandler}
@@ -44,7 +44,7 @@ const Questions = () => {
         Добави въпрос
       </Button>
       {questions ? (
-        questions.map((q, index) => {
+        questions.sort((a,b) => a.quesId - b.quesId).map((q, index) => {
           return (
             <Question
               key={index}

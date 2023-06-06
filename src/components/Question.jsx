@@ -53,7 +53,7 @@ const Question = ({ number, answers, question, isAdmin = false }) => {
           }
         });
       } else {
-        swal(`Въпрос с номер ${ques.quesId} е в безопастност.`);
+        swal(`Въпрос с номер ${ques.quesId} е в безопасност.`);
       }
     });
   };
