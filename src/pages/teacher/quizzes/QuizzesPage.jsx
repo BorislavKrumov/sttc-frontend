@@ -44,7 +44,7 @@ const QuizzesPage = () => {
           }
         });
       } else {
-        swal(`${quiz.title} е в безопастност.`);
+        swal(`${quiz.title} е в безопасност.`);
       }
     });
   };

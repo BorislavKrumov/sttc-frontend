@@ -64,7 +64,7 @@ const UpdateQuiz = () => {
       };
       updateQuiz(dispatch, quiz, token).then((data) => {
         if (data.type === quizzesConstants.UPDATE_QUIZ_SUCCESS){
-          swal("Тестът се обнови!", `${quiz.title} е обновен`, "success");
+          swal("Тестът се обнови!", `${quiz.title} е обновен`, "success").then(() => navigate(-1));
           fetchQuizzes(dispatch, token);
         }
         else {
@@ -181,7 +181,7 @@ const UpdateQuiz = () => {
             type="submit"
             variant="primary"
           >
-            Добави
+            Обнови
           </Button>
         </Form>
       </FormContainer>

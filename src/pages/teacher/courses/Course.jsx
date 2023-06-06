@@ -39,7 +39,7 @@ const Course = () => {
 
   const updateCourseHandler = (event, course) => {
     event.stopPropagation();
-    navigate(`/updateCourse/${course.courseId}/`);
+    navigate(`/updateCourse/${course.id}/`);
   };
 
   const deleteCourseHandler = (event, course) => {
@@ -68,7 +68,7 @@ const Course = () => {
           }
         });
       } else {
-        swal(`${course.title} е в безопастност`);
+        swal(`${course.title} е в безопасност`);
       }
     });
   };

@@ -39,7 +39,7 @@ const deleteCourse = async (id, token) => {
     const config = {
       headers: { Authorization: `Bearer ${token}` },
     };
-    const { data } = await axios.delete(`/api/course/${id}/`, config);
+    const { data } = await axios.delete(`/api/course/${id}`, config);
     console.log("courseService:deleteCourse()  Success: ", data);
     return {
       isDeleted: true,
@@ -63,7 +63,7 @@ const updateCourse = async (course, token) => {
       headers: { Authorization: `Bearer ${token}` },
     };
     const { data } = await axios.put(
-      `/api/course/${course.id}/`,
+      `/api/course/`,
       course,
       config
     );
