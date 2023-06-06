@@ -24,6 +24,7 @@
     "redux": "^4.2.0",
     "redux-devtools-extension": "^2.13.9",
     "redux-thunk": "^2.4.1",
+    "styled-components": "^6.0.0-rc.3",
     "sweetalert": "^2.1.2",
     "web-vitals": "^2.1.4"
   },
@@ -50,5 +51,20 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "description": "",
+  "main": "index.js",
+  "devDependencies": {
+    "@types/styled-components": "^5.1.26"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BorislavKrumov/sttc-frontend.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BorislavKrumov/sttc-frontend/issues"
   }
 }

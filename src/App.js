@@ -50,7 +50,7 @@ const App = () => {
         <Route path="/teacherQuestions" element={<ProtectedRoute roles={["TEACHER"]}> <Sidebar> <Questions /> </Sidebar> </ProtectedRoute>} />
         <Route path="/teacherAddQuestion" element={<ProtectedRoute roles={["TEACHER"]}> <Sidebar> <AddQuestion /> </Sidebar> </ProtectedRoute>} />
 
-        <Route path="/adminUpdateQuestion/:quesId" element={<ProtectedRoute roles={["ADMIN"]}> <Sidebar> <UpdateQuestion /> </Sidebar> </ProtectedRoute>} />
+        <Route path="/adminUpdateQuestion/:quesId" element={<ProtectedRoute roles={["ADMIN", "TEACHER"]}> <Sidebar> <UpdateQuestion /> </Sidebar> </ProtectedRoute>} />
         <Route path="/adminUsers" element={<ProtectedRoute roles={["ADMIN"]}> <Sidebar> <UsersPage /> </Sidebar> </ProtectedRoute>} />
 
         <Route path="/quizzes" element={<ProtectedRoute roles={["USER"]}> <Sidebar> <UserQuizzesPage /> </Sidebar> </ProtectedRoute>} />
@@ -62,7 +62,6 @@ const App = () => {
         <Route path="/" element={<LoginPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
-
       </Routes>
     </Router>
   );

@@ -7,6 +7,8 @@ import { fetchCourses } from "../../actions/coursesActions";
 import { fetchQuizzes } from "../../actions/quizzesActions";
 import "./UserProfilePage.css";
 import axios from "axios";
+import { fetchUsers } from "../../actions/userActions";
+import swal from "sweetalert";
 
 const UserProfilePage = () => {
   const dispatch = useDispatch();
@@ -16,6 +18,7 @@ const UserProfilePage = () => {
   const token = JSON.parse(localStorage.getItem("jwtToken"));
 
   const [selectedImage, setSelectedImage] = useState(null);
+  const [isFromApi, setIsFromApi] = useState(false);
 
   useEffect(() => {
     fetchCourses(dispatch, token);
@@ -29,23 +32,48 @@ const UserProfilePage = () => {
     if (!localStorage.getItem("jwtToken")) navigate("/");
   }, []);
 
+  useEffect(() => {
+    fetchUsers(dispatch, token).then((data) => {
+      const users = data.payload;
+      console.log(users)
+      const avatar = users.find(u => u.userId === user.userId).imageB64;
+      setSelectedImage(avatar);
+      setIsFromApi(true);
+    })
+  },[]);
+
   const handleImageChange = (e) => {
     setSelectedImage(e.target.files[0]);
+    setIsFromApi(false);
   };
 
   const handleImageUpload = async () => {
-    // Implement the image upload logic here
-    // and update the user's profile picture
     const formData = new FormData();
     formData.append('file', selectedImage);
     formData.append('id', user.userId);
-    const config = {
-      headers: { Authorization: `Bearer ${token}` },
-    };
+  
+    try {
+      const response = await axios.patch("/api/manage/users", formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          'Authorization': `Bearer ${token}`
+        },
+      });
+      swal(
+        "Снимката е качена успешно!",
+        ``,
+        "success"
+      );
 
-    // Make a request to the backend API to upload the picture
-    const { data } = await axios.put(`/api/manage/users/da`, formData, config);
-    console.log("users:uploadPicture() Success: ", data);
+      console.log('Success:', response);
+    } catch (error) {
+      console.error('Error:', error);
+      swal(
+        "Снимката не е качена успешно!",
+        ``,
+        "error"
+      );
+    }
   };
 
   return (
@@ -61,7 +89,7 @@ const UserProfilePage = () => {
                   <Image
                     className="userProfilePage__content--profilePic"
                     roundedCircle
-                    src={selectedImage ? URL.createObjectURL(selectedImage) : "images/user.png"}
+                    src={selectedImage ? isFromApi ? `data:image/jpeg;base64,${selectedImage}` : URL.createObjectURL(selectedImage) : "images/user.png"}
                   />
                   <div className="userProfilePage__card-text">Моля, качете своя профилна снимка!</div>
                   <div className="userProfilePage__content--buttons">
